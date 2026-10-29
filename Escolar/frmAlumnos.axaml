@@ -1,0 +1,45 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="projMenuGeneral.Escolar.frmAlumnos"
+        Title="Alumnos"
+        Width="800" Height="450"
+        WindowStartupLocation="CenterScreen">
+  <Panel>
+    <!-- Las posiciones (Canvas.Left / Canvas.Top) son las mismas X, Y que tenias en el diseñador de WinForms -->
+    <Canvas>
+      <TextBlock x:Name="labelMatricula" Text="Matricula" Canvas.Left="231" Canvas.Top="80" />
+      <TextBox x:Name="txtMatricula" Canvas.Left="280" Canvas.Top="77" Width="241" />
+      <TextBlock x:Name="labelNombre" Text="Nombre" Canvas.Left="230" Canvas.Top="106" />
+      <TextBox x:Name="txtNombre" Canvas.Left="280" Canvas.Top="103" Width="241" />
+      <TextBlock x:Name="labelTelefono" Text="Telefono" Canvas.Left="230" Canvas.Top="132" />
+      <TextBox x:Name="txtTelefono" Canvas.Left="280" Canvas.Top="129" Width="241" />
+      <TextBlock x:Name="labelCorreo" Text="Correo" Canvas.Left="230" Canvas.Top="158" />
+      <TextBox x:Name="txtCorreo" Canvas.Left="280" Canvas.Top="155" Width="241" />
+      <TextBlock x:Name="labelCarrera" Text="Carrera" Canvas.Left="230" Canvas.Top="194" />
+      <ComboBox x:Name="comboCarreras" Canvas.Left="280" Canvas.Top="191" Width="241" />
+    </Canvas>
+
+    <!-- Menu y barra de iconos (van encima, arriba) -->
+    <StackPanel VerticalAlignment="Top">
+      <Menu x:Name="msAlumnos">
+        <MenuItem x:Name="msOpcionesAlumnos" Header="Opciones">
+          <MenuItem x:Name="msRegistrar" Header="Registrar" Click="msRegistrar_Click" />
+          <MenuItem x:Name="msBuscar" Header="Buscar" Click="msBuscar_Click" />
+          <MenuItem x:Name="msEliminar" Header="Eliminar" Click="msEliminar_Click" />
+        </MenuItem>
+        <MenuItem x:Name="msSalir" Header="Salir" Click="msSalir_Click" />
+      </Menu>
+      <StackPanel x:Name="tsAlumnos" Orientation="Horizontal" Height="50" Spacing="2">
+        <Button x:Name="tsRegistrar" Click="tsRegistrar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Registrar">
+          <Image Source="avares://projMenuGeneral/Iconos/save.png" Width="32" Height="32" />
+        </Button>
+        <Button x:Name="tsBuscar" Click="tsBuscar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Buscar">
+          <Image Source="avares://projMenuGeneral/Iconos/search.png" Width="32" Height="32" />
+        </Button>
+        <Button x:Name="tsEliminar" Click="tsEliminar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Eliminar">
+          <Image Source="avares://projMenuGeneral/Iconos/trash.png" Width="32" Height="32" />
+        </Button>
+      </StackPanel>
+    </StackPanel>
+  </Panel>
+</Window>

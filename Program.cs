@@ -1,13 +1,22 @@
 using Avalonia;
+using System;
 
-namespace ControlEscolar;
-
-internal static class Program
+namespace projMenuGeneral
 {
-    [STAThread]
-    public static void Main(string[] args) =>
-        BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+    internal static class Program
+    {
+        /// <summary>
+        /// Punto de entrada principal para la aplicación.
+        /// </summary>
+        [STAThread]
+        static void Main(string[] args)
+        {
+            BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+        }
 
-    public static AppBuilder BuildAvaloniaApp() =>
-        AppBuilder.Configure<App>().UsePlatformDetect();
+        public static AppBuilder BuildAvaloniaApp()
+        {
+            return AppBuilder.Configure<App>().UsePlatformDetect();
+        }
+    }
 }

@@ -2,22 +2,25 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using ControlEscolar.Views;
 
-namespace ControlEscolar;
-
-public partial class App : Application
+namespace projMenuGeneral
 {
-    public override void Initialize() => AvaloniaXamlLoader.Load(this);
-
-    public override void OnFrameworkInitializationCompleted()
+    public partial class App : Application
     {
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        public override void Initialize()
         {
-            // Igual que en WinForms: al cerrar el menu principal se cierra la aplicacion.
-            desktop.ShutdownMode = ShutdownMode.OnMainWindowClose;
-            desktop.MainWindow = new MainWindow();
+            AvaloniaXamlLoader.Load(this);
         }
-        base.OnFrameworkInitializationCompleted();
+
+        public override void OnFrameworkInitializationCompleted()
+        {
+            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                // Igual que Application.Run(new frmMenuGeneral()): al cerrar el menu se cierra el programa
+                desktop.ShutdownMode = ShutdownMode.OnMainWindowClose;
+                desktop.MainWindow = new frmMenuGeneral();
+            }
+            base.OnFrameworkInitializationCompleted();
+        }
     }
 }

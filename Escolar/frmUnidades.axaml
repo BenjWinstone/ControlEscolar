@@ -1,0 +1,18 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="projMenuGeneral.Escolar.frmUnidades"
+        Title="frmUnidades"
+        Width="800" Height="450"
+        WindowStartupLocation="CenterScreen">
+  <Panel>
+    <!-- Las posiciones (Canvas.Left / Canvas.Top) son las mismas X, Y que tenias en el diseñador de WinForms -->
+    <Canvas>
+      <TextBlock x:Name="labelClave" Text="Clave de la Unidad" Canvas.Left="176" Canvas.Top="137" />
+      <TextBox x:Name="txtClave" Canvas.Left="371" Canvas.Top="143" Width="241" />
+      <TextBlock x:Name="labelNombre" Text="Nombre de la Unidad" Canvas.Left="176" Canvas.Top="163" />
+      <TextBox x:Name="txtNombre" Canvas.Left="371" Canvas.Top="169" Width="241" />
+      <TextBlock x:Name="label1" Text="Municipio" Canvas.Left="176" Canvas.Top="189" />
+      <ComboBox x:Name="comboBox1" Canvas.Left="371" Canvas.Top="194" Width="241" />
+    </Canvas>
+  </Panel>
+</Window>

@@ -1,0 +1,16 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="projMenuGeneral.Escolar.frmTurnos"
+        Title="frmTurnos"
+        Width="800" Height="450"
+        WindowStartupLocation="CenterScreen">
+  <Panel>
+    <!-- Las posiciones (Canvas.Left / Canvas.Top) son las mismas X, Y que tenias en el diseñador de WinForms -->
+    <Canvas>
+      <TextBlock x:Name="labelClave" Text="Clave del Turno" Canvas.Left="182" Canvas.Top="112" />
+      <TextBox x:Name="txtClave" Canvas.Left="362" Canvas.Top="118" Width="241" />
+      <TextBlock x:Name="labelNombre" Text="Nombre del Turno" Canvas.Left="182" Canvas.Top="138" />
+      <TextBox x:Name="txtNombre" Canvas.Left="362" Canvas.Top="144" Width="241" />
+    </Canvas>
+  </Panel>
+</Window>

@@ -1,0 +1,26 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="projMenuGeneral.frmMenuGeneral"
+        Title="Menu General"
+        Width="800" Height="450"
+        WindowStartupLocation="CenterScreen">
+  <DockPanel>
+    <Menu x:Name="msGeneral" DockPanel.Dock="Top">
+      <MenuItem x:Name="msOperaciones" Header="Operaciones">
+          <MenuItem x:Name="msSuma" Header="Suma" Click="msSuma_Click" />
+          <MenuItem x:Name="msResta" Header="Resta" Click="msResta_Click" />
+          <MenuItem x:Name="msMultiplicacion" Header="Multiplicacion" Click="msMultiplicacion_Click" />
+          <MenuItem x:Name="msDivision" Header="Division" Click="msDivision_Click" />
+      </MenuItem>
+      <MenuItem x:Name="msFiguras" Header="Figuras" />
+      <MenuItem x:Name="msEscolar" Header="Escolar">
+          <MenuItem x:Name="msAlumnos" Header="Alumnos" Click="msAlumnos_Click" />
+          <MenuItem x:Name="msMaestros" Header="Maestros" Click="msMaestros_Click" />
+          <MenuItem x:Name="msMaterias" Header="Materias" Click="msMaterias_Click" />
+          <MenuItem x:Name="msCarreras" Header="Carreras" Click="msCarreras_Click" />
+      </MenuItem>
+      <MenuItem x:Name="msSalir" Header="Salir" Click="msSalir_Click" />
+    </Menu>
+    <Panel />
+  </DockPanel>
+</Window>
