@@ -1,0 +1,7 @@
+bin/
+obj/
+.vs/
+.idea/
+*.user
+# Contiene la contrasena de la base de datos: nunca subirlo
+appsettings.json

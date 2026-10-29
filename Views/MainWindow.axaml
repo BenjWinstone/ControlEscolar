@@ -1,0 +1,20 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ControlEscolar.Views.MainWindow"
+        Title="Menu General"
+        Width="800" Height="450"
+        WindowStartupLocation="CenterScreen">
+  <Grid RowDefinitions="Auto,*">
+    <Menu Grid.Row="0">
+      <MenuItem Header="_Escolar">
+        <MenuItem Header="_Alumnos" Click="Alumnos_Click" />
+        <MenuItem Header="_Maestros" Click="Maestros_Click" />
+        <MenuItem Header="Ma_terias" Click="Materias_Click" />
+        <MenuItem Header="_Carreras" Click="Carreras_Click" />
+      </MenuItem>
+      <MenuItem Header="_Salir" Click="Salir_Click" />
+    </Menu>
+    <TextBlock Grid.Row="1" Text="Control Escolar" FontSize="28"
+               HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.6" />
+  </Grid>
+</Window>
