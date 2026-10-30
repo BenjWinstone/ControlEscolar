@@ -24,7 +24,7 @@ namespace projMenuGeneral.Clases
         }
         public string Guardar()
         {
-            return $"insert into tblSemestres(iIdSemestre, iValorSemestre) values ({_clave},'{_nivel}')";
+            return $"insert into tblSemestres(iIdSemestre, iNivel) values ({_clave},'{_nivel}')";
         }
         public string Buscar()
         {
@@ -32,7 +32,7 @@ namespace projMenuGeneral.Clases
         }
         public string Modificar()
         {
-            return $"update tblSemestres set iValorSemestre = '{_nivel}' where iIdSemestre = {_clave}";
+            return $"update tblSemestres set iNivel = '{_nivel}' where iIdSemestre = {_clave}";
         }
         public string Eliminar()
         {

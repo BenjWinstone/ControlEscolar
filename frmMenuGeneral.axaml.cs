@@ -38,6 +38,21 @@ namespace projMenuGeneral
             frmCarreras carreras = new frmCarreras();
             carreras.Show();
         }
+        private void msSemestres_Click(object sender, RoutedEventArgs e)
+        {
+            frmSemestres semestres = new frmSemestres();
+            semestres.Show();
+        }
+        private void msTurnos_Click(object sender, RoutedEventArgs e)
+        {
+            frmTurnos turnos = new frmTurnos();
+            turnos.Show();
+        }
+        private void msUnidades_Click(object sender, RoutedEventArgs e)
+        {
+            frmUnidades unidades = new frmUnidades();
+            unidades.Show();
+        }
 
         private void msSuma_Click(object sender, RoutedEventArgs e)
         {

@@ -18,10 +18,6 @@ namespace projMenuGeneral.Escolar
             if (!Design.IsDesignMode)   // CAMBIO: la vista previa de Rider no debe conectarse a la base de datos
                 CargarCarreras();
         }
-        private void cargaCarreras()
-        {
-           
-        }
         private void CargarCarreras()
         {
             DataSet ds = new DataSet();
@@ -29,18 +25,6 @@ namespace projMenuGeneral.Escolar
             Clases.clsConexion c = new Clases.clsConexion(s.ConsultaGeneral());
             ds = c.Consultar();
             LlenarComboCarreras(ds.Tables[0]);   // CAMBIO: antes DataSource / DisplayMember / ValueMember
-
-            /*string cadenaConexion = @"Server=void\SQLSERVER2025;Database=dbEscolar;Trusted_Connection=True;";
-            using (SqlConnection cn = new SqlConnection(cadenaConexion))
-            {
-                SqlDataAdapter da = new SqlDataAdapter("SELECT iIdCarrera, vCarrera FROM tblCarreras", cn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                comboCarreras.DataSource = dt;
-                comboCarreras.DisplayMember = "vCarrera";
-                comboCarreras.ValueMember = "iIdCarrera";
-            }*/
         }
         // CAMBIO (Avalonia): el ComboBox de WinForms usaba DataSource/DisplayMember/ValueMember.
         // Aqui se llena con objetos clsOpcion (Valor = iIdCarrera, Texto = vCarrera) y estos 3 metodos
@@ -168,8 +152,6 @@ namespace projMenuGeneral.Escolar
                 await MessageBox.Show("Registro Realizado con exito");
             }
         }
-        //Quiero mucho a JF pq trata de darnos atencion personal
-        //PERO SOMOS MUCHOS, NO SE PUEDE
         private async Task Eliminar()
         {
             if (!await ObtenerEntero(txtNumero, "El numero de empleado"))

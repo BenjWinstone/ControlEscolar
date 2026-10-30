@@ -20,16 +20,11 @@ namespace projMenuGeneral.Escolar
         }
         private void CargarCarreras()
         {
-            //string cadenaConexion = @"Server=void\SQLSERVER2025;Database=dbEscolar;Trusted_Connection=True;";   // original
-            string cadenaConexion = Clases.clsGlobal.conexion;   // CAMBIO: la misma cadena que usa clsConexion
-            using (SqlConnection cn = new SqlConnection(cadenaConexion))
-            {
-                SqlDataAdapter da = new SqlDataAdapter("SELECT iIdCarrera, vCarrera FROM tblCarreras", cn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                LlenarComboCarreras(dt);   // CAMBIO: antes DataSource / DisplayMember / ValueMember
-            }
+            DataSet ds = new DataSet();
+            Clases.clsCarreras s = new Clases.clsCarreras();
+            Clases.clsConexion c = new Clases.clsConexion(s.ConsultaGeneral());
+            ds = c.Consultar();
+            LlenarComboCarreras(ds.Tables[0]);
         }
         // CAMBIO (Avalonia): el ComboBox de WinForms usaba DataSource/DisplayMember/ValueMember.
         // Aqui se llena con objetos clsOpcion (Valor = iIdCarrera, Texto = vCarrera) y estos 3 metodos

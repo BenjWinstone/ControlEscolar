@@ -11,12 +11,12 @@
       <TextBox x:Name="txtClave" Canvas.Left="371" Canvas.Top="90" Width="241" />
       <TextBlock x:Name="labelNombre" Text="Nombre de la Unidad" Canvas.Left="235" Canvas.Top="120" />
       <TextBox x:Name="txtNombre" Canvas.Left="371" Canvas.Top="115" Width="241" />
-      <TextBlock x:Name="labelCiudad" Text="Ciudad" Canvas.Left="235" Canvas.Top="145" />
-      <ComboBox x:Name="comboCiudades" Canvas.Left="371" Canvas.Top="140" Width="241" />
+      <TextBlock x:Name="labelEstado" Text="Estado" Canvas.Left="235" Canvas.Top="145" />
+      <ComboBox x:Name="comboEstados" Canvas.Left="371" Canvas.Top="140" Width="241" />
       <TextBlock x:Name="labelMunicipio" Text="Municipio" Canvas.Left="235" Canvas.Top="170" />
       <ComboBox x:Name="comboMunicipios" Canvas.Left="371" Canvas.Top="165" Width="241" />
-      <TextBlock x:Name="labelEstado" Text="Estado" Canvas.Left="235" Canvas.Top="195" />
-      <ComboBox x:Name="comboEstados" Canvas.Left="371" Canvas.Top="190" Width="241" />
+      <TextBlock x:Name="labelCiudad" Text="Ciudad" Canvas.Left="235" Canvas.Top="195" />
+      <ComboBox x:Name="comboCiudades" Canvas.Left="371" Canvas.Top="190" Width="241" />
     </Canvas>
     
     <StackPanel VerticalAlignment="Top">

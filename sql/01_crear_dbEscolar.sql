@@ -120,7 +120,7 @@ BEGIN
     CREATE TABLE dbo.tblSemestres
     (
         iIdSemestre    INT NOT NULL,
-        iValorSemestre INT NOT NULL,
+        iNivel INT NOT NULL,
         CONSTRAINT PK_tblSemestres PRIMARY KEY (iIdSemestre),
         CONSTRAINT CK_tblSemestres_iIdSemestre CHECK (iIdSemestre > 0)
     );
@@ -158,6 +158,50 @@ BEGIN
 END
 GO
 
+/* ----- tblEstados ------ */
+IF OBJECT_ID(N'dbo.tblEstados', N'U') IS NULL
+    BEGIN
+        CREATE TABLE dbo.tblEstados
+        (
+            iIdEstado    INT          NOT NULL,
+            vEstado VARCHAR(100) NOT NULL,
+            CONSTRAINT PK_tblEstados PRIMARY KEY (iIdEstado),
+            CONSTRAINT CK_tblEstados_iIdEstado CHECK (iIdEstado > 0)
+        );
+    END
+GO
+
+/* ----- tblMunicipios ------ */
+IF OBJECT_ID(N'dbo.tblMunicipios', N'U') IS NULL
+    BEGIN
+        CREATE TABLE dbo.tblMunicipios
+        (
+            iIdMunicipio    INT          NOT NULL,
+            iIdEstado INT,
+            vMunicipio VARCHAR(100) NOT NULL,
+            CONSTRAINT PK_tblMunicipios PRIMARY KEY (iIdMunicipio),
+            CONSTRAINT FK_tblMunicipios_tblEstados FOREIGN KEY (iIdEstado) REFERENCES tblEstados(iIdEstado),
+            CONSTRAINT CK_tblMunicipios_iIdMunicipio CHECK (iIdMunicipio > 0),
+            CONSTRAINT CK_tblMunicipios_iIdEstado CHECK (iIdEstado > 0)
+        );
+    END
+GO
+
+/* ----- tblCiudades ------ */
+IF OBJECT_ID(N'dbo.tblCiudades', N'U') IS NULL
+    BEGIN
+        CREATE TABLE dbo.tblCiudades
+        (
+            iIdCiudad    INT          NOT NULL,
+            iIdMunicipio INT,
+            vCiudad VARCHAR(100) NOT NULL,
+            CONSTRAINT PK_tblCiudades PRIMARY KEY (iIdCiudad),
+            CONSTRAINT FK_tblCiudades_tblMunicipios FOREIGN KEY (iIdMunicipio) REFERENCES tblMunicipios(iIdMunicipio),
+            CONSTRAINT CK_tblCiudades_iIdCiudad CHECK (iIdCiudad > 0),
+            CONSTRAINT CK_tblCiudades_iIdMunicipio CHECK (iIdMunicipio > 0)
+        );
+    END
+GO
 
 /* =============== 2. CAMBIOS A TABLAS EXISTENTES (ALTER) ===============
    Aqui van, en el orden en que los hiciste, los cambios que ya probaste y quieres conservar.
