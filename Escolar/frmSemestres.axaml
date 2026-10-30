@@ -23,7 +23,7 @@
         </MenuItem>
         <MenuItem x:Name="msSalir" Header="Salir" />
       </Menu>
-      <StackPanel x:Name="tsMaterias" Orientation="Horizontal" Height="50" Spacing="2">
+      <StackPanel x:Name="tsMaterias" Classes="toolstrip" Orientation="Horizontal" Height="50" Spacing="2">
         <Button x:Name="tsRegistrar" Background="Transparent" Padding="8,7" ToolTip.Tip="Registrar">
           <Image Source="avares://projMenuGeneral/Iconos/save.png" Width="32" Height="32" />
         </Button>

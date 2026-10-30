@@ -7,16 +7,16 @@
   <Panel>
     <!-- Las posiciones (Canvas.Left / Canvas.Top) son las mismas X, Y que tenias en el diseñador de WinForms -->
     <Canvas>
-      <TextBlock x:Name="labelMatricula" Text="Matricula" Canvas.Left="231" Canvas.Top="80" />
-      <TextBox x:Name="txtMatricula" Canvas.Left="280" Canvas.Top="77" Width="241" />
-      <TextBlock x:Name="labelNombre" Text="Nombre" Canvas.Left="230" Canvas.Top="106" />
-      <TextBox x:Name="txtNombre" Canvas.Left="280" Canvas.Top="103" Width="241" />
-      <TextBlock x:Name="labelTelefono" Text="Telefono" Canvas.Left="230" Canvas.Top="132" />
-      <TextBox x:Name="txtTelefono" Canvas.Left="280" Canvas.Top="129" Width="241" />
-      <TextBlock x:Name="labelCorreo" Text="Correo" Canvas.Left="230" Canvas.Top="158" />
-      <TextBox x:Name="txtCorreo" Canvas.Left="280" Canvas.Top="155" Width="241" />
-      <TextBlock x:Name="labelCarrera" Text="Carrera" Canvas.Left="230" Canvas.Top="194" />
-      <ComboBox x:Name="comboCarreras" Canvas.Left="280" Canvas.Top="191" Width="241" />
+      <TextBlock x:Name="labelMatricula" Text="Matricula" Canvas.Left="231" Canvas.Top="95" />
+      <TextBox x:Name="txtMatricula" Canvas.Left="300" Canvas.Top="90" Width="241" />
+      <TextBlock x:Name="labelNombre" Text="Nombre" Canvas.Left="230" Canvas.Top="120" />
+      <TextBox x:Name="txtNombre" Canvas.Left="300" Canvas.Top="115" Width="241" />
+      <TextBlock x:Name="labelTelefono" Text="Telefono" Canvas.Left="230" Canvas.Top="145" />
+      <TextBox x:Name="txtTelefono" Canvas.Left="300" Canvas.Top="140" Width="241" />
+      <TextBlock x:Name="labelCorreo" Text="Correo" Canvas.Left="230" Canvas.Top="170" />
+      <TextBox x:Name="txtCorreo" Canvas.Left="300" Canvas.Top="165" Width="241" />
+      <TextBlock x:Name="labelCarrera" Text="Carrera" Canvas.Left="230" Canvas.Top="195" />
+      <ComboBox x:Name="comboCarreras" Canvas.Left="300" Canvas.Top="190" Width="241" />
     </Canvas>
 
     <!-- Menu y barra de iconos (van encima, arriba) -->
@@ -29,7 +29,7 @@
         </MenuItem>
         <MenuItem x:Name="msSalir" Header="Salir" Click="msSalir_Click" />
       </Menu>
-      <StackPanel x:Name="tsAlumnos" Orientation="Horizontal" Height="50" Spacing="2">
+      <StackPanel x:Name="tsAlumnos" Classes="toolstrip" Orientation="Horizontal" Height="50" Spacing="2">
         <Button x:Name="tsRegistrar" Click="tsRegistrar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Registrar">
           <Image Source="avares://projMenuGeneral/Iconos/save.png" Width="32" Height="32" />
         </Button>

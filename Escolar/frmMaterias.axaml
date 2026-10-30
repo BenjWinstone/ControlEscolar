@@ -8,9 +8,9 @@
     <!-- Las posiciones (Canvas.Left / Canvas.Top) son las mismas X, Y que tenias en el diseñador de WinForms -->
     <Canvas>
       <TextBlock x:Name="labelClave" Text="Clave de la Materia" Canvas.Left="202" Canvas.Top="92" />
-      <TextBox x:Name="txtClave" Canvas.Left="316" Canvas.Top="89" Width="241" />
+      <TextBox x:Name="txtClave" Canvas.Left="330" Canvas.Top="89" Width="241" />
       <TextBlock x:Name="labelNombre" Text="Nombre de la Materia" Canvas.Left="203" Canvas.Top="130" />
-      <TextBox x:Name="txtNombre" Canvas.Left="316" Canvas.Top="127" Width="241" />
+      <TextBox x:Name="txtNombre" Canvas.Left="330" Canvas.Top="127" Width="241" />
     </Canvas>
 
     <!-- Menu y barra de iconos (van encima, arriba) -->
@@ -23,7 +23,7 @@
         </MenuItem>
         <MenuItem x:Name="msSalir" Header="Salir" Click="msSalir_Click" />
       </Menu>
-      <StackPanel x:Name="tsMaterias" Orientation="Horizontal" Height="50" Spacing="2">
+      <StackPanel x:Name="tsMaterias" Classes="toolstrip" Orientation="Horizontal" Height="50" Spacing="2">
         <Button x:Name="tsRegistrar" Click="tsRegistrar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Registrar">
           <Image Source="avares://projMenuGeneral/Iconos/save.png" Width="32" Height="32" />
         </Button>

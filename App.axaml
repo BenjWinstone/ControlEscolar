@@ -1,7 +1,7 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="projMenuGeneral.App"
-             RequestedThemeVariant="Default">
+             RequestedThemeVariant="Light">
   <Application.Styles>
     <FluentTheme />
 
@@ -9,6 +9,13 @@
          (letra de 9pt = 12px, cajas de texto bajitas) y las posiciones de tu diseno encajen -->
     <Style Selector="Window">
       <Setter Property="FontSize" Value="12" />
+      <Setter Property="Background" Value="DimGray" />
+    </Style>
+    <Style Selector="Menu">
+      <Setter Property="Background" Value="DarkSlateGray" />
+    </Style>
+    <Style Selector="StackPanel.toolstrip">
+      <Setter Property="Background" Value="DarkSlateGray" />
     </Style>
     <Style Selector="TextBox">
       <Setter Property="MinHeight" Value="24" />

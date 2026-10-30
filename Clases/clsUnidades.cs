@@ -9,7 +9,9 @@ namespace projMenuGeneral.Clases
     internal class clsUnidades
     {
         private string _nombre;
+        private string _ciudad;
         private string _municipio;
+        private string _estado;
         private int _id;
         public clsUnidades()
         {
@@ -18,11 +20,13 @@ namespace projMenuGeneral.Clases
         {
             _id = clave;
         }
-        public clsUnidades(int clave, string nombre, string municipio)
+        public clsUnidades(int clave, string nombre, string ciudad,string municipio, string estado)
         {
             _id = clave;
             _nombre = nombre;
+            _ciudad = ciudad;
             _municipio = municipio;
+            _estado = estado;
         }
         public string Guardar()
         {

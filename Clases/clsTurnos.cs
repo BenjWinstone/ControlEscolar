@@ -13,13 +13,13 @@ namespace projMenuGeneral.Clases
         public clsTurnos()
         {
         }
-        public clsTurnos(int clave)
+        public clsTurnos(int id)
         {
-            _id = clave;
+            _id = id;
         }
-        public clsTurnos(int clave, string nombre)
+        public clsTurnos(int id, string nombre)
         {
-            _id = clave;
+            _id = id;
             _nombre = nombre;
         }
         public string Guardar()

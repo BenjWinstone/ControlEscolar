@@ -37,6 +37,18 @@ GO
 
 /* =============== 1. TABLAS =============== */
 
+IF OBJECT_ID(N'dbo.tblDepartamentos', N'U') IS NULL
+    BEGIN
+        CREATE TABLE dbo.tblDepartamentos
+        (
+            iIdDepartamento    TINYINT          NOT NULL,
+            vNombre VARCHAR(100) NOT NULL,
+            CONSTRAINT PK_tblDepartamentos PRIMARY KEY (iIdDepartamento),
+            CONSTRAINT CK_tblDepartamentos_iIdDepartamentos CHECK (iIdDepartamento > 0)
+        );
+    END
+GO
+    
 /* ---------- tblCarreras ---------- */
 IF OBJECT_ID(N'dbo.tblCarreras', N'U') IS NULL
 BEGIN
@@ -44,8 +56,11 @@ BEGIN
     (
         iIdCarrera INT          NOT NULL,
         vCarrera   VARCHAR(100) NOT NULL,
+        iIdDepartamento TINYINT NOT NULL,
+        CONSTRAINT FK_tblCarreras_tblDepartamentos FOREIGN KEY (iIdDepartamento) REFERENCES tblDepartamentos(iIdDepartamento),
         CONSTRAINT PK_tblCarreras PRIMARY KEY (iIdCarrera),
-        CONSTRAINT CK_tblCarreras_iIdCarrera CHECK (iIdCarrera > 0)
+        CONSTRAINT CK_tblCarreras_iIdCarrera CHECK (iIdCarrera > 0),
+        CONSTRAINT Ck_iIdDepartamento CHECK (iIdDepartamento > 0)
     );
 END
 GO
@@ -134,7 +149,9 @@ BEGIN
     CREATE TABLE dbo.tblUnidades
     (
         iIdUnidades    INT          NOT NULL,
-        iValorUnidades VARCHAR(100) NOT NULL,
+        vCiudad VARCHAR(100) NOT NULL,
+        vMunicipio VARCHAR(100) NOT NULL,
+        vEstado VARCHAR(100) NOT NULL,
         CONSTRAINT PK_tblUnidades PRIMARY KEY (iIdUnidades),
         CONSTRAINT CK_tblUnidades_iIdUnidades CHECK (iIdUnidades > 0)
     );
@@ -153,3 +170,6 @@ GO
        ALTER TABLE dbo.tblCarreras ADD iIdDepartamento TINYINT NULL;
    <-- aqui va un GO, solo en su propia linea
    =================================================================== */
+
+
+

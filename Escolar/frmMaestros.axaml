@@ -7,16 +7,16 @@
   <Panel>
     <!-- Las posiciones (Canvas.Left / Canvas.Top) son las mismas X, Y que tenias en el diseñador de WinForms -->
     <Canvas>
-      <TextBlock x:Name="labelNumero" Text="Numero de Empleado" Canvas.Left="216" Canvas.Top="103" />
-      <TextBox x:Name="txtNumero" Canvas.Left="331" Canvas.Top="100" Width="241" />
+      <TextBlock x:Name="labelNumero" Text="Numero de Empleado" Canvas.Left="215" Canvas.Top="103" />
+      <TextBox x:Name="txtNumero" Canvas.Left="340" Canvas.Top="100" Width="241" />
       <TextBlock x:Name="labelNombre" Text="Nombre" Canvas.Left="215" Canvas.Top="129" />
-      <TextBox x:Name="txtNombre" Canvas.Left="331" Canvas.Top="126" Width="241" />
+      <TextBox x:Name="txtNombre" Canvas.Left="340" Canvas.Top="126" Width="241" />
       <TextBlock x:Name="labelTelefono" Text="Telefono" Canvas.Left="215" Canvas.Top="155" />
-      <TextBox x:Name="txtTelefono" Canvas.Left="331" Canvas.Top="152" Width="241" />
+      <TextBox x:Name="txtTelefono" Canvas.Left="340" Canvas.Top="152" Width="241" />
       <TextBlock x:Name="labelCorreo" Text="Correo" Canvas.Left="215" Canvas.Top="181" />
-      <TextBox x:Name="txtCorreo" Canvas.Left="331" Canvas.Top="178" Width="241" />
-      <TextBlock x:Name="labelCarrera" Text="Carrera" Canvas.Left="218" Canvas.Top="212" />
-      <ComboBox x:Name="comboCarreras" Canvas.Left="331" Canvas.Top="209" Width="241" />
+      <TextBox x:Name="txtCorreo" Canvas.Left="340" Canvas.Top="178" Width="241" />
+      <TextBlock x:Name="labelCarrera" Text="Carrera" Canvas.Left="215" Canvas.Top="212" />
+      <ComboBox x:Name="comboCarreras" Canvas.Left="340" Canvas.Top="209" Width="241" />
     </Canvas>
 
     <!-- Menu y barra de iconos (van encima, arriba) -->
@@ -29,11 +29,11 @@
         </MenuItem>
         <MenuItem x:Name="msSalir" Header="Salir" Click="msSalir_Click" />
       </Menu>
-      <StackPanel x:Name="tsMaestros" Orientation="Horizontal" Height="50" Spacing="2">
+      <StackPanel x:Name="tsMaestros" Classes="toolstrip" Orientation="Horizontal" Height="50" Spacing="2">
         <Button x:Name="tsRegistrar" Click="tsRegistrar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Registrar">
           <Image Source="avares://projMenuGeneral/Iconos/save.png" Width="32" Height="32" />
         </Button>
-        <Button x:Name="tsBuscar" Click="tsBuscar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Buscar">
+        <Button x:Name="tsBuscar"  Click="tsBuscar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Buscar">
           <Image Source="avares://projMenuGeneral/Iconos/search.png" Width="32" Height="32" />
         </Button>
         <Button x:Name="tsEliminar" Click="tsEliminar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Eliminar">
