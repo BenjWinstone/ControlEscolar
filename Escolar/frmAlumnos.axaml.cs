@@ -136,10 +136,21 @@ namespace projMenuGeneral.Escolar
             ds = c.Consultar();
             if (ds.Tables["Tabla"].Rows.Count > 0)
             {
-                alumno = new clsAlumnos(int.Parse(txtMatricula.Text), txtNombre.Text, txtCorreo.Text, txtTelefono.Text, ValorCarrera());
-                c = new Clases.clsConexion(alumno.Modificar());
-                c.Ejecutar();
-                await MessageBox.Show("Registro Existente Modificado");
+                DataRow row = ds.Tables["Tabla"].Rows[0];
+                string mensaje = "¿Seguro que quiere actualizar el siguiente registro?" + Environment.NewLine + Environment.NewLine +
+                                 "Matricula: " + row["iMatricula"] + Environment.NewLine +
+                                 "Nombre: " + row["vNombre"] + "  ->  " + txtNombre.Text + Environment.NewLine +
+                                 "Correo: " + row["vCorreo"] + "  ->  " + txtCorreo.Text + Environment.NewLine +
+                                 "Telefono: " + row["vTelefono"] + "  ->  " + txtTelefono.Text + Environment.NewLine +
+                                 "Carrera: " + row["iIdCarrera"] + "  ->  " + ValorCarrera();
+                DialogResult resultado = await MessageBox.Show(mensaje, "Confirmar modificacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                if (resultado == DialogResult.OK)
+                {
+                    alumno = new clsAlumnos(int.Parse(txtMatricula.Text), txtNombre.Text, txtCorreo.Text, txtTelefono.Text, ValorCarrera());
+                    c = new Clases.clsConexion(alumno.Modificar());
+                    c.Ejecutar();
+                    await MessageBox.Show("Registro Existente Modificado");
+                }
             }
             else
             {

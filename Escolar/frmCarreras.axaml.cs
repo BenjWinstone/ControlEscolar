@@ -99,10 +99,19 @@ namespace projMenuGeneral.Escolar
             ds = c.Consultar();
             if (ds.Tables["Tabla"].Rows.Count > 0)
             {
-                carrera = new clsCarreras(int.Parse(txtClave.Text), txtNombre.Text, idDepartamento);
-                c = new Clases.clsConexion(carrera.Modificar());
-                c.Ejecutar();
-                await MessageBox.Show("Registro Existente Modificado");
+                DataRow row = ds.Tables["Tabla"].Rows[0];
+                string mensaje = "¿Seguro que quiere actualizar el siguiente registro?" + Environment.NewLine + Environment.NewLine +
+                                 "Clave: " + row["iIdCarrera"] + Environment.NewLine +
+                                 "Nombre: " + row["vCarrera"] + "  ->  " + txtNombre.Text + Environment.NewLine +
+                                 "Departamento: " + row["iIdDepartamento"] + "  ->  " + ValorDepartamento();
+                DialogResult resultado = await MessageBox.Show(mensaje, "Confirmar modificacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                if (resultado == DialogResult.OK)
+                {
+                    carrera = new clsCarreras(int.Parse(txtClave.Text), txtNombre.Text, (byte)ValorDepartamento());
+                    c = new Clases.clsConexion(carrera.Modificar());
+                    c.Ejecutar();
+                    await MessageBox.Show("Registro Existente Modificado");
+                }
             }
             else
             {

@@ -12,30 +12,30 @@
       <TextBlock x:Name="labelNombre" Text="Nombre de la Unidad" Canvas.Left="235" Canvas.Top="120" />
       <TextBox x:Name="txtNombre" Canvas.Left="371" Canvas.Top="115" Width="241" />
       <TextBlock x:Name="labelEstado" Text="Estado" Canvas.Left="235" Canvas.Top="145" />
-      <ComboBox x:Name="comboEstados" Canvas.Left="371" Canvas.Top="140" Width="241" />
+      <ComboBox x:Name="comboEstados" Canvas.Left="371" Canvas.Top="140" Width="241" SelectionChanged="comboEstados_SelectionChanged" />
       <TextBlock x:Name="labelMunicipio" Text="Municipio" Canvas.Left="235" Canvas.Top="170" />
-      <ComboBox x:Name="comboMunicipios" Canvas.Left="371" Canvas.Top="165" Width="241" />
+      <ComboBox x:Name="comboMunicipios" Canvas.Left="371" Canvas.Top="165" Width="241" SelectionChanged="comboMunicipios_SelectionChanged" />
       <TextBlock x:Name="labelCiudad" Text="Ciudad" Canvas.Left="235" Canvas.Top="195" />
       <ComboBox x:Name="comboCiudades" Canvas.Left="371" Canvas.Top="190" Width="241" />
     </Canvas>
-    
+
     <StackPanel VerticalAlignment="Top">
       <Menu x:Name="msUnidades">
         <MenuItem x:Name="msOpciones" Header="Opciones">
-          <MenuItem x:Name="msRegistrar" Header="Registrar" />
-          <MenuItem x:Name="msBuscar" Header="Buscar" />
-          <MenuItem x:Name="msEliminar" Header="Eliminar" />
+          <MenuItem x:Name="msRegistrar" Header="Registrar" Click="msRegistrar_Click" />
+          <MenuItem x:Name="msBuscar" Header="Buscar" Click="msBuscar_Click" />
+          <MenuItem x:Name="msEliminar" Header="Eliminar" Click="msEliminar_Click" />
         </MenuItem>
-        <MenuItem x:Name="msSalir" Header="Salir" />
+        <MenuItem x:Name="msSalir" Header="Salir" Click="msSalir_Click" />
       </Menu>
       <StackPanel x:Name="tsUnidades" Classes="toolstrip" Orientation="Horizontal" Height="50" Spacing="2">
-        <Button x:Name="tsRegistrar" Background="Transparent" Padding="8,7" ToolTip.Tip="Registrar">
+        <Button x:Name="tsRegistrar" Click="tsRegistrar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Registrar">
           <Image Source="avares://projMenuGeneral/Iconos/save.png" Width="32" Height="32" />
         </Button>
-        <Button x:Name="tsBuscar" Background="Transparent" Padding="8,7" ToolTip.Tip="Buscar">
+        <Button x:Name="tsBuscar" Click="tsBuscar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Buscar">
           <Image Source="avares://projMenuGeneral/Iconos/search.png" Width="32" Height="32" />
         </Button>
-        <Button x:Name="tsEliminar" Background="Transparent" Padding="8,7" ToolTip.Tip="Eliminar">
+        <Button x:Name="tsEliminar" Click="tsEliminar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Eliminar">
           <Image Source="avares://projMenuGeneral/Iconos/trash.png" Width="32" Height="32" />
         </Button>
       </StackPanel>
