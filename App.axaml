@@ -1,8 +1,33 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="ControlEscolar.App"
-             RequestedThemeVariant="Default">
+             x:Class="projMenuGeneral.App"
+             RequestedThemeVariant="Light">
   <Application.Styles>
     <FluentTheme />
+
+    <!-- Ajustes para que los controles tengan un tamano parecido al de WinForms
+         (letra de 9pt = 12px, cajas de texto bajitas) y las posiciones de tu diseno encajen -->
+    <Style Selector="Window">
+      <Setter Property="FontSize" Value="12" />
+      <Setter Property="Background" Value="DimGray" />
+    </Style>
+    <Style Selector="Menu">
+      <Setter Property="Background" Value="DarkSlateGray" />
+    </Style>
+    <Style Selector="StackPanel.toolstrip">
+      <Setter Property="Background" Value="DarkSlateGray" />
+    </Style>
+    <Style Selector="TextBox">
+      <Setter Property="MinHeight" Value="24" />
+      <Setter Property="Height" Value="24" />
+      <Setter Property="Padding" Value="4,2" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+    <Style Selector="ComboBox">
+      <Setter Property="MinHeight" Value="24" />
+      <Setter Property="Height" Value="24" />
+      <Setter Property="Padding" Value="6,0,0,0" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
   </Application.Styles>
 </Application>

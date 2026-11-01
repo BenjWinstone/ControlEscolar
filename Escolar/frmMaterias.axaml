@@ -1,0 +1,39 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="projMenuGeneral.Escolar.frmMaterias"
+        Title="Materias"
+        Width="800" Height="450"
+        WindowStartupLocation="CenterScreen">
+  <Panel>
+    <!-- Las posiciones (Canvas.Left / Canvas.Top) son las mismas X, Y que tenias en el diseñador de WinForms -->
+    <Canvas>
+      <TextBlock x:Name="labelClave" Text="Clave de la Materia" Canvas.Left="202" Canvas.Top="92" />
+      <TextBox x:Name="txtClave" Canvas.Left="330" Canvas.Top="89" Width="241" />
+      <TextBlock x:Name="labelNombre" Text="Nombre de la Materia" Canvas.Left="203" Canvas.Top="130" />
+      <TextBox x:Name="txtNombre" Canvas.Left="330" Canvas.Top="127" Width="241" />
+    </Canvas>
+
+    <!-- Menu y barra de iconos (van encima, arriba) -->
+    <StackPanel VerticalAlignment="Top">
+      <Menu x:Name="msMaterias">
+        <MenuItem x:Name="msOpciones" Header="Opciones">
+          <MenuItem x:Name="msRegistrar" Header="Registrar" Click="msRegistrar_Click" />
+          <MenuItem x:Name="msBuscar" Header="Buscar" Click="msBuscar_Click" />
+          <MenuItem x:Name="msEliminar" Header="Eliminar" Click="msEliminar_Click" />
+        </MenuItem>
+        <MenuItem x:Name="msSalir" Header="Salir" Click="msSalir_Click" />
+      </Menu>
+      <StackPanel x:Name="tsMaterias" Classes="toolstrip" Orientation="Horizontal" Height="50" Spacing="2">
+        <Button x:Name="tsRegistrar" Click="tsRegistrar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Registrar">
+          <Image Source="avares://projMenuGeneral/Iconos/save.png" Width="32" Height="32" />
+        </Button>
+        <Button x:Name="tsBuscar" Click="tsBuscar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Buscar">
+          <Image Source="avares://projMenuGeneral/Iconos/search.png" Width="32" Height="32" />
+        </Button>
+        <Button x:Name="tsEliminar" Click="tsEliminar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Eliminar">
+          <Image Source="avares://projMenuGeneral/Iconos/trash.png" Width="32" Height="32" />
+        </Button>
+      </StackPanel>
+    </StackPanel>
+  </Panel>
+</Window>
