@@ -24,6 +24,13 @@ namespace projMenuGeneral.Clases
         static public string conexion = $"Data Source={_server}; Initial Catalog={_dbn};User ID={_UserID};Password={_psswd};{_sec}";
             //$"Data Source={_server};Initial Catalog={_dbn};Persist Security Info=True;User ID={_UserID};Password={_psswd};Encrypt=False;Trusted_Connection=True;"; 
 
+        static public int _idUsuario;
+        static public string _usuario;
+        static public byte _rol;          // 1 = usuario, 2 = admin
+        static public bool EsAdmin
+        {
+            get { return _rol == 2; }
+        }
         // Reemplazo de Application.Exit() de WinForms: cierra todo el programa
         static public void Salir()
         {
