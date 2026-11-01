@@ -1,0 +1,31 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="projMenuGeneral.Escolar.frmSolicitudes"
+        Title="Solicitudes pendientes"
+        Width="800" Height="450"
+        WindowStartupLocation="CenterScreen">
+  <Panel>
+    <Canvas>
+      <ListBox x:Name="listaSolicitudes" Canvas.Left="195" Canvas.Top="90" Width="411" Height="140" SelectionChanged="listaSolicitudes_SelectionChanged" />
+      <TextBox x:Name="txtDescripcion" Canvas.Left="195" Canvas.Top="240" Width="411" Height="110" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" VerticalContentAlignment="Top" />
+    </Canvas>
+
+    <StackPanel VerticalAlignment="Top">
+      <Menu x:Name="msSolicitudes">
+        <MenuItem x:Name="msOpciones" Header="Opciones">
+          <MenuItem x:Name="msActualizar" Header="Actualizar lista" Click="msActualizar_Click" />
+          <MenuItem x:Name="msAtender" Header="Marcar como atendida" Click="msAtender_Click" />
+        </MenuItem>
+        <MenuItem x:Name="msSalir" Header="Salir" Click="msSalir_Click" />
+      </Menu>
+      <StackPanel x:Name="tsSolicitudes" Classes="toolstrip" Orientation="Horizontal" Height="50" Spacing="2">
+        <Button x:Name="tsActualizar" Click="tsActualizar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Actualizar lista">
+          <Image Source="avares://projMenuGeneral/Iconos/search.png" Width="32" Height="32" />
+        </Button>
+        <Button x:Name="tsAtender" Click="tsAtender_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Marcar como atendida">
+          <Image Source="avares://projMenuGeneral/Iconos/save.png" Width="32" Height="32" />
+        </Button>
+      </StackPanel>
+    </StackPanel>
+  </Panel>
+</Window>

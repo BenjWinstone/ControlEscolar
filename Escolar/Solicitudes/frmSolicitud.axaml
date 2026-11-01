@@ -1,0 +1,29 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="projMenuGeneral.Escolar.frmSolicitud"
+        Title="Solicitar nuevo lugar"
+        Width="800" Height="450"
+        WindowStartupLocation="CenterScreen">
+  <Panel>
+    <Canvas>
+      <TextBlock x:Name="labelTitulo" Text="Titulo" Canvas.Left="195" Canvas.Top="95" Width="160" />
+      <TextBox x:Name="txtTitulo" Canvas.Left="365" Canvas.Top="90" Width="241" MaxLength="100" />
+      <TextBlock x:Name="labelDescripcion" Text="Descripcion" Canvas.Left="195" Canvas.Top="125" Width="160" />
+      <TextBox x:Name="txtDescripcion" Canvas.Left="365" Canvas.Top="120" Width="241" Height="120" MaxLength="500" AcceptsReturn="True" TextWrapping="Wrap" VerticalContentAlignment="Top" />
+    </Canvas>
+
+    <StackPanel VerticalAlignment="Top">
+      <Menu x:Name="msSolicitud">
+        <MenuItem x:Name="msOpciones" Header="Opciones">
+          <MenuItem x:Name="msEnviar" Header="Enviar solicitud" Click="msEnviar_Click" />
+        </MenuItem>
+        <MenuItem x:Name="msSalir" Header="Salir" Click="msSalir_Click" />
+      </Menu>
+      <StackPanel x:Name="tsSolicitud" Classes="toolstrip" Orientation="Horizontal" Height="50" Spacing="2">
+        <Button x:Name="tsEnviar" Click="tsEnviar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Enviar solicitud">
+          <Image Source="avares://projMenuGeneral/Iconos/save.png" Width="32" Height="32" />
+        </Button>
+      </StackPanel>
+    </StackPanel>
+  </Panel>
+</Window>

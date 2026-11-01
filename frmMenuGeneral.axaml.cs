@@ -13,6 +13,13 @@ namespace projMenuGeneral
         public frmMenuGeneral()
         {
             InitializeComponent();
+            // Admin: ve todo + Ubicaciones + Solicitudes. Usuario: ve el boton para solicitar un lugar nuevo
+            bool admin = Clases.clsGlobal.EsAdmin;
+            msUbicaciones.IsVisible = admin;
+            msSolicitudes.IsVisible = admin;
+            btnSolicitar.IsVisible = !admin;
+            if (!string.IsNullOrEmpty(Clases.clsGlobal._usuario))
+                Title = "Menu General - " + Clases.clsGlobal._usuario;
         }
 
         private void msAlumnos_Click(object sender, RoutedEventArgs e)
@@ -38,6 +45,11 @@ namespace projMenuGeneral
             frmCarreras carreras = new frmCarreras();
             carreras.Show();
         }
+        private void msDepartamentos_Click(object sender, RoutedEventArgs e)
+        {
+            frmDepartamentos departamentos = new frmDepartamentos();
+            departamentos.Show();
+        }
         private void msSemestres_Click(object sender, RoutedEventArgs e)
         {
             frmSemestres semestres = new frmSemestres();
@@ -52,6 +64,35 @@ namespace projMenuGeneral
         {
             frmUnidades unidades = new frmUnidades();
             unidades.Show();
+        }
+
+        // ---------- Solo admin ----------
+        private void msEstados_Click(object sender, RoutedEventArgs e)
+        {
+            frmEstados estados = new frmEstados();
+            estados.Show();
+        }
+        private void msMunicipios_Click(object sender, RoutedEventArgs e)
+        {
+            frmMunicipios municipios = new frmMunicipios();
+            municipios.Show();
+        }
+        private void msCiudades_Click(object sender, RoutedEventArgs e)
+        {
+            frmCiudades ciudades = new frmCiudades();
+            ciudades.Show();
+        }
+        private void msSolicitudes_Click(object sender, RoutedEventArgs e)
+        {
+            frmSolicitudes solicitudes = new frmSolicitudes();
+            solicitudes.Show();
+        }
+
+        // ---------- Solo usuario ----------
+        private void btnSolicitar_Click(object sender, RoutedEventArgs e)
+        {
+            frmSolicitud solicitud = new frmSolicitud();
+            solicitud.Show();
         }
 
         private void msSuma_Click(object sender, RoutedEventArgs e)

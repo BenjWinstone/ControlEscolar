@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace projMenuGeneral.Escolar
 {
-    public partial class frmUnidades : Window
+    public partial class frmCiudades : Window
     {
-        public frmUnidades()
+        public frmCiudades()
         {
             InitializeComponent();
             if (!Design.IsDesignMode)   // la vista previa de Rider no debe conectarse a la base de datos
@@ -23,8 +23,8 @@ namespace projMenuGeneral.Escolar
         {
             DataSet ds = new DataSet();
             Clases.clsEstados s = new Clases.clsEstados();
-            Clases.clsConexion c = new Clases.clsConexion(s.ConsultaGeneral());
-            ds = c.Consultar();
+            Clases.clsConexion cn = new Clases.clsConexion(s.ConsultaGeneral());
+            ds = cn.Consultar();
             LlenarComboEstados(ds.Tables[0]);
         }
         private List<clsOpcion> _estados = new List<clsOpcion>();
@@ -45,8 +45,8 @@ namespace projMenuGeneral.Escolar
         {
             DataSet ds = new DataSet();
             Clases.clsMunicipios s = new Clases.clsMunicipios(idEstado);
-            Clases.clsConexion c = new Clases.clsConexion(s.ConsultaPorEstado());
-            ds = c.Consultar();
+            Clases.clsConexion cn = new Clases.clsConexion(s.ConsultaPorEstado());
+            ds = cn.Consultar();
             LlenarComboMunicipios(ds.Tables[0]);
         }
         private List<clsOpcion> _municipios = new List<clsOpcion>();
@@ -57,66 +57,27 @@ namespace projMenuGeneral.Escolar
                 _municipios.Add(new clsOpcion(Convert.ToInt32(fila["iIdMunicipio"]), fila["vMunicipio"].ToString()));
             comboMunicipios.ItemsSource = _municipios;
         }
+        private int ValorMunicipio()
+        {
+            return ((clsOpcion)comboMunicipios.SelectedItem).Valor;
+        }
         private void SeleccionarMunicipio(int idMunicipio)
         {
             comboMunicipios.SelectedItem = _municipios.FirstOrDefault(o => o.Valor == idMunicipio);
         }
-
-        // ---------- Ciudades (dependen del municipio elegido) ----------
-        private void CargarCiudades(int idMunicipio)
-        {
-            DataSet ds = new DataSet();
-            Clases.clsCiudades s = new Clases.clsCiudades(idMunicipio);
-            Clases.clsConexion c = new Clases.clsConexion(s.ConsultaPorMunicipio());
-            ds = c.Consultar();
-            LlenarComboCiudades(ds.Tables[0]);
-        }
-        private List<clsOpcion> _ciudades = new List<clsOpcion>();
-        private void LlenarComboCiudades(DataTable dt)
-        {
-            _ciudades = new List<clsOpcion>();
-            foreach (DataRow fila in dt.Rows)
-                _ciudades.Add(new clsOpcion(Convert.ToInt32(fila["iIdCiudad"]), fila["vCiudad"].ToString()));
-            comboCiudades.ItemsSource = _ciudades;
-        }
-        private int ValorCiudad()
-        {
-            return ((clsOpcion)comboCiudades.SelectedItem).Valor;
-        }
-        private void SeleccionarCiudad(int idCiudad)
-        {
-            comboCiudades.SelectedItem = _ciudades.FirstOrDefault(o => o.Valor == idCiudad);
-        }
-
-        // ---------- Cascada: al cambiar un combo se recarga el siguiente ----------
         private void VaciarMunicipios()
         {
             _municipios = new List<clsOpcion>();
             comboMunicipios.ItemsSource = _municipios;
         }
-        private void VaciarCiudades()
-        {
-            _ciudades = new List<clsOpcion>();
-            comboCiudades.ItemsSource = _ciudades;
-        }
         private void comboEstados_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Design.IsDesignMode)
                 return;
-            VaciarCiudades();
             if (comboEstados.SelectedItem == null)
                 VaciarMunicipios();
             else
                 CargarMunicipios(((clsOpcion)comboEstados.SelectedItem).Valor);
-        }
-        private void comboMunicipios_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (Design.IsDesignMode)
-                return;
-            if (comboMunicipios.SelectedItem == null)
-                VaciarCiudades();
-            else
-                CargarCiudades(((clsOpcion)comboMunicipios.SelectedItem).Valor);
         }
 
         // ---------- Validaciones ----------
@@ -140,23 +101,6 @@ namespace projMenuGeneral.Escolar
             }
             return false;
         }
-        private async Task<bool> ValidarUnidad()
-        {
-            if (await CampoVacio(txtNombre, "el nombre de la unidad")) return false;
-            if (txtNombre.Text.Length > 50)
-            {
-                await MessageBox.Show("El nombre de la unidad no puede tener mas de 50 caracteres");
-                txtNombre.Focus();
-                return false;
-            }
-            if (comboCiudades.SelectedItem == null)
-            {
-                await MessageBox.Show("Seleccione el estado, el municipio y la ciudad");
-                comboEstados.Focus();
-                return false;
-            }
-            return true;
-        }
 
         // ---------- Buscar / Guardar / Eliminar ----------
         Clases.clsConexion c;
@@ -166,54 +110,59 @@ namespace projMenuGeneral.Escolar
                 return;
 
             DataSet ds = new DataSet();
-            clsUnidades unidad = new clsUnidades(int.Parse(txtClave.Text));
-            c = new Clases.clsConexion(unidad.Buscar());
+            clsCiudades ciudad = new clsCiudades(int.Parse(txtClave.Text), 0);
+            c = new Clases.clsConexion(ciudad.Buscar());
             ds = c.Consultar();
             if (ds.Tables["Tabla"].Rows.Count > 0)
             {
                 DataRow row = ds.Tables["Tabla"].Rows[0];
-                txtNombre.Text = row["vNombre"].ToString();
-                // Cada Seleccionar... dispara la carga del siguiente combo, por eso van en este orden
+                txtNombre.Text = row["vCiudad"].ToString();
+                // Seleccionar el estado carga los municipios, por eso van en este orden
                 SeleccionarEstado(Convert.ToInt32(row["iIdEstado"]));
                 SeleccionarMunicipio(Convert.ToInt32(row["iIdMunicipio"]));
-                SeleccionarCiudad(Convert.ToInt32(row["iIdCiudad"]));
             }
             else
             {
-                await MessageBox.Show("No existe esa unidad");
+                await MessageBox.Show("No existe esa ciudad");
                 txtNombre.Text = "";
             }
         }
 
         private async Task Guardar()
         {
-            if (!await ObtenerEntero(txtClave, "La clave") || !await ValidarUnidad())
+            if (!await ObtenerEntero(txtClave, "La clave") || await CampoVacio(txtNombre, "el nombre de la ciudad"))
                 return;
+            if (comboMunicipios.SelectedItem == null)
+            {
+                await MessageBox.Show("Seleccione el estado y el municipio");
+                comboEstados.Focus();
+                return;
+            }
 
             DataSet ds = new DataSet();
-            clsUnidades unidad = new clsUnidades(int.Parse(txtClave.Text));
-            c = new Clases.clsConexion(unidad.Buscar());
+            clsCiudades ciudad = new clsCiudades(int.Parse(txtClave.Text), 0);
+            c = new Clases.clsConexion(ciudad.Buscar());
             ds = c.Consultar();
             if (ds.Tables["Tabla"].Rows.Count > 0)
             {
                 DataRow row = ds.Tables["Tabla"].Rows[0];
                 string mensaje = "¿Seguro que quiere actualizar el siguiente registro?" + Environment.NewLine + Environment.NewLine +
-                    "Clave: " + row["iIdUnidades"] + Environment.NewLine +
-                    "Nombre: " + row["vNombre"] + "  ->  " + txtNombre.Text + Environment.NewLine +
-                    "Ciudad: " + row["vCiudad"] + "  ->  " + comboCiudades.SelectedItem;
+                                 "Clave: " + row["iIdCiudad"] + Environment.NewLine +
+                                 "Nombre: " + row["vCiudad"] + "  ->  " + txtNombre.Text + Environment.NewLine +
+                                 "Municipio: " + row["iIdMunicipio"] + "  ->  " + ValorMunicipio();
                 DialogResult resultado = await MessageBox.Show(mensaje, "Confirmar modificacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (resultado == DialogResult.OK)
                 {
-                    unidad = new clsUnidades(int.Parse(txtClave.Text), txtNombre.Text, ValorCiudad());
-                    c = new Clases.clsConexion(unidad.Modificar());
+                    ciudad = new clsCiudades(int.Parse(txtClave.Text), ValorMunicipio(), txtNombre.Text);
+                    c = new Clases.clsConexion(ciudad.Modificar());
                     c.Ejecutar();
                     await MessageBox.Show("Registro Existente Modificado");
                 }
             }
             else
             {
-                unidad = new clsUnidades(int.Parse(txtClave.Text), txtNombre.Text, ValorCiudad());
-                c = new Clases.clsConexion(unidad.Guardar());
+                ciudad = new clsCiudades(int.Parse(txtClave.Text), ValorMunicipio(), txtNombre.Text);
+                c = new Clases.clsConexion(ciudad.Guardar());
                 c.Ejecutar();
                 await MessageBox.Show("Registro Realizado con exito");
             }
@@ -225,28 +174,34 @@ namespace projMenuGeneral.Escolar
                 return;
 
             DataSet ds = new DataSet();
-            clsUnidades unidad = new clsUnidades(int.Parse(txtClave.Text));
-            c = new Clases.clsConexion(unidad.Buscar());
+            clsCiudades ciudad = new clsCiudades(int.Parse(txtClave.Text), 0);
+            c = new Clases.clsConexion(ciudad.Buscar());
             ds = c.Consultar();
             if (ds.Tables["Tabla"].Rows.Count > 0)
             {
                 DataRow row = ds.Tables["Tabla"].Rows[0];
                 string mensaje = "¿Seguro que quiere eliminar el siguiente registro?" + Environment.NewLine + Environment.NewLine +
-                    "Clave: " + row["iIdUnidades"] + Environment.NewLine +
-                    "Nombre: " + row["vNombre"] + Environment.NewLine +
-                    "Ciudad: " + row["vCiudad"];
+                    "Clave: " + row["iIdCiudad"] + Environment.NewLine +
+                    "Nombre: " + row["vCiudad"];
                 DialogResult resultado = await MessageBox.Show(mensaje, "Confirmar eliminacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-
                 if (resultado == DialogResult.OK)
                 {
-                    c = new Clases.clsConexion(unidad.Eliminar());
-                    c.Ejecutar();
-                    await MessageBox.Show("Registro Eliminado");
+                    try
+                    {
+                        c = new Clases.clsConexion(ciudad.Eliminar());
+                        c.Ejecutar();
+                        await MessageBox.Show("Registro Eliminado");
+                    }
+                    catch (Exception)
+                    {
+                        // Sin este try/catch, un FK violado cierra el programa completo
+                        await MessageBox.Show("No se pudo eliminar. Revise que no tenga unidades registradas");
+                    }
                 }
             }
             else
             {
-                await MessageBox.Show("No existe esa unidad");
+                await MessageBox.Show("No existe esa ciudad");
             }
         }
 

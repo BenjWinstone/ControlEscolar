@@ -1,36 +1,37 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Class="projMenuGeneral.Escolar.frmSemestres"
-        Title="Semestres"
+        x:Class="projMenuGeneral.Escolar.frmDepartamentos"
+        Title="Departamentos"
         Width="800" Height="450"
         WindowStartupLocation="CenterScreen">
   <Panel>
-    <!-- Las posiciones (Canvas.Left / Canvas.Top) son las mismas X, Y que tenias en el diseñador de WinForms -->
+    <!-- Estandar: primer TextBox/ComboBox en Top=90, primer label en Top=95, 30 de separacion entre filas.
+         Labels en Left=195 (Width 160), controles en Left=365 (Width 241): centrado para ventana de 800 -->
     <Canvas>
-      <TextBlock x:Name="labelClave" Text="Clave del Departamento" Canvas.Left="140" Canvas.Top="115" />
-      <TextBox x:Name="txtClave" Canvas.Left="300" Canvas.Top="112" Width="241" />
-      <TextBlock x:Name="labelNNombre" Text="Nombre del Departamento" Canvas.Left="140" Canvas.Top="153" />
-      <TextBox x:Name="txtNombre" Canvas.Left="300" Canvas.Top="150" Width="241" />
+      <TextBlock x:Name="labelClave" Text="Clave del Departamento" Canvas.Left="195" Canvas.Top="95" Width="160" />
+      <TextBox x:Name="txtClave" Canvas.Left="365" Canvas.Top="90" Width="241" />
+      <TextBlock x:Name="labelNombre" Text="Nombre del Departamento" Canvas.Left="195" Canvas.Top="125" Width="160" />
+      <TextBox x:Name="txtNombre" Canvas.Left="365" Canvas.Top="120" Width="241" MaxLength="100" />
     </Canvas>
 
     <!-- Menu y barra de iconos (van encima, arriba) -->
     <StackPanel VerticalAlignment="Top">
-      <Menu x:Name="msMaterias">
+      <Menu x:Name="msDepartamentos">
         <MenuItem x:Name="msOpciones" Header="Opciones">
-          <MenuItem x:Name="msRegistrar" Header="Registrar" Click="msRegistrar_Click"/>
-          <MenuItem x:Name="msBuscar" Header="Buscar" Click="msBuscar_Click"/>
-          <MenuItem x:Name="msEliminar" Header="Eliminar" Click="msEliminar_Click"/>
+          <MenuItem x:Name="msRegistrar" Header="Registrar" Click="msRegistrar_Click" />
+          <MenuItem x:Name="msBuscar" Header="Buscar" Click="msBuscar_Click" />
+          <MenuItem x:Name="msEliminar" Header="Eliminar" Click="msEliminar_Click" />
         </MenuItem>
-        <MenuItem x:Name="msSalir" Header="Salir" Click="msSalir_Click"/>
+        <MenuItem x:Name="msSalir" Header="Salir" Click="msSalir_Click" />
       </Menu>
-      <StackPanel x:Name="tsMaterias" Classes="toolstrip" Orientation="Horizontal" Height="50" Spacing="2">
-        <Button x:Name="tsRegistrar" Background="Transparent" Padding="8,7" ToolTip.Tip="Registrar" Click="tsRegistrar_Click">
+      <StackPanel x:Name="tsDepartamentos" Classes="toolstrip" Orientation="Horizontal" Height="50" Spacing="2">
+        <Button x:Name="tsRegistrar" Click="tsRegistrar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Registrar">
           <Image Source="avares://projMenuGeneral/Iconos/save.png" Width="32" Height="32" />
         </Button>
-        <Button x:Name="tsBuscar" Background="Transparent" Padding="8,7" ToolTip.Tip="Buscar" Click="tsBuscar_Click">
+        <Button x:Name="tsBuscar" Click="tsBuscar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Buscar">
           <Image Source="avares://projMenuGeneral/Iconos/search.png" Width="32" Height="32" />
         </Button>
-        <Button x:Name="tsEliminar" Background="Transparent" Padding="8,7" ToolTip.Tip="Eliminar" Click="tsEliminar_Click">
+        <Button x:Name="tsEliminar" Click="tsEliminar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Eliminar">
           <Image Source="avares://projMenuGeneral/Iconos/trash.png" Width="32" Height="32" />
         </Button>
       </StackPanel>

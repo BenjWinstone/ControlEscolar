@@ -1,18 +1,19 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="projMenuGeneral.Escolar.frmTurnos"
-        Title="frmTurnos"
+        Title="Turnos"
         Width="800" Height="450"
         WindowStartupLocation="CenterScreen">
   <Panel>
-    <!-- Las posiciones (Canvas.Left / Canvas.Top) son las mismas X, Y que tenias en el diseñador de WinForms -->
+    <!-- Estandar: primer TextBox/ComboBox en Top=90, primer label en Top=95, 30 de separacion entre filas.
+         Labels en Left=195 (Width 160), controles en Left=365 (Width 241): centrado para ventana de 800 -->
     <Canvas>
-      <TextBlock x:Name="labelClave" Text="Clave del Turno" Canvas.Left="250" Canvas.Top="105" />
-      <TextBox x:Name="txtClave" Canvas.Left="360" Canvas.Top="100" Width="241" />
-      <TextBlock x:Name="labelNombre" Text="Nombre del Turno" Canvas.Left="250" Canvas.Top="135" />
-      <TextBox x:Name="txtNombre" Canvas.Left="360" Canvas.Top="130" Width="241" />
+      <TextBlock x:Name="labelClave" Text="Clave del Turno" Canvas.Left="195" Canvas.Top="95" Width="160" />
+      <TextBox x:Name="txtClave" Canvas.Left="365" Canvas.Top="90" Width="241" />
+      <TextBlock x:Name="labelNombre" Text="Nombre del Turno" Canvas.Left="195" Canvas.Top="125" Width="160" />
+      <TextBox x:Name="txtNombre" Canvas.Left="365" Canvas.Top="120" Width="241" />
     </Canvas>
-    
+
     <!-- Menu y barra de iconos (van encima, arriba) -->
     <StackPanel VerticalAlignment="Top">
       <Menu x:Name="msTurnos">

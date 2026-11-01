@@ -1,17 +1,17 @@
 using Avalonia.Controls;
+using Avalonia.Interactivity;
+using projMenuGeneral.Clases;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using Avalonia.Interactivity;
-using projMenuGeneral.Clases;
 
 namespace projMenuGeneral.Escolar
 {
-    public partial class frmSemestres : Window
+    public partial class frmEstados : Window
     {
-        public frmSemestres()
+        public frmEstados()
         {
             InitializeComponent();
         }
@@ -35,54 +35,61 @@ namespace projMenuGeneral.Escolar
             }
             return false;
         }
+        private async Task<bool> ClaveValida()
+        {
+            if (!await ObtenerEntero(txtClave, "La clave"))
+                return false;
+            return true;
+        }
         Clases.clsConexion c;
         private async Task Buscar()
         {
-            if (!await ObtenerEntero(txtClave, "La clave"))
+            if (!await ClaveValida())
                 return;
 
             DataSet ds = new DataSet();
-            clsSemestre semestre = new clsSemestre(int.Parse(txtClave.Text));
-            c = new Clases.clsConexion(semestre.Buscar());
+            clsEstados estado = new clsEstados(int.Parse(txtClave.Text));
+            c = new Clases.clsConexion(estado.Buscar());
             ds = c.Consultar();
             if (ds.Tables["Tabla"].Rows.Count > 0)
             {
-                txtNivel.Text = ds.Tables["Tabla"].Rows[0]["iNivel"].ToString();
+                txtNombre.Text = ds.Tables["Tabla"].Rows[0]["vEstado"].ToString();
             }
             else
-            { await MessageBox.Show("No existe ese semestre");
-                txtNivel.Text = "";
+            {
+                await MessageBox.Show("No existe ese estado");
+                txtNombre.Text = "";
             }
         }
 
         private async Task Guardar()
         {
-            if (!await ObtenerEntero(txtClave, "La clave") || !await ObtenerEntero(txtNivel, "el nivel del semestre"))
+            if (!await ClaveValida() || await CampoVacio(txtNombre, "el nombre del estado"))
                 return;
 
             DataSet ds = new DataSet();
-            clsSemestre semestre = new clsSemestre(int.Parse(txtClave.Text));
-            c = new Clases.clsConexion(semestre.Buscar());
+            clsEstados estado = new clsEstados(int.Parse(txtClave.Text));
+            c = new Clases.clsConexion(estado.Buscar());
             ds = c.Consultar();
             if (ds.Tables["Tabla"].Rows.Count > 0)
             {
                 DataRow row = ds.Tables["Tabla"].Rows[0];
                 string mensaje = "¿Seguro que quiere actualizar el siguiente registro?" + Environment.NewLine + Environment.NewLine +
-                                 "Clave: " + row["iIdSemestre"] + Environment.NewLine +
-                                 "Nivel: " + row["iNivel"] + "  ->  " + txtNivel.Text;
+                                 "Clave: " + row["iIdEstado"] + Environment.NewLine +
+                                 "Nombre: " + row["vEstado"] + "  ->  " + txtNombre.Text;
                 DialogResult resultado = await MessageBox.Show(mensaje, "Confirmar modificacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (resultado == DialogResult.OK)
                 {
-                    semestre = new clsSemestre(int.Parse(txtClave.Text), int.Parse(txtNivel.Text));
-                    c = new Clases.clsConexion(semestre.Modificar());
+                    estado = new clsEstados(int.Parse(txtClave.Text), txtNombre.Text);
+                    c = new Clases.clsConexion(estado.Modificar());
                     c.Ejecutar();
                     await MessageBox.Show("Registro Existente Modificado");
                 }
             }
             else
             {
-                semestre = new clsSemestre(int.Parse(txtClave.Text), int.Parse(txtNivel.Text));
-                c = new Clases.clsConexion(semestre.Guardar());
+                estado = new clsEstados(int.Parse(txtClave.Text), txtNombre.Text);
+                c = new Clases.clsConexion(estado.Guardar());
                 c.Ejecutar();
                 await MessageBox.Show("Registro Realizado con exito");
             }
@@ -90,32 +97,38 @@ namespace projMenuGeneral.Escolar
 
         private async Task Eliminar()
         {
-            if (!await ObtenerEntero(txtClave, "La clave"))
+            if (!await ClaveValida())
                 return;
 
             DataSet ds = new DataSet();
-            clsSemestre semestre = new clsSemestre(int.Parse(txtClave.Text));
-            c = new Clases.clsConexion(semestre.Buscar());
+            clsEstados estado = new clsEstados(int.Parse(txtClave.Text));
+            c = new Clases.clsConexion(estado.Buscar());
             ds = c.Consultar();
             if (ds.Tables["Tabla"].Rows.Count > 0)
             {
                 DataRow row = ds.Tables["Tabla"].Rows[0];
                 string mensaje = "¿Seguro que quiere eliminar el siguiente registro?" + Environment.NewLine + Environment.NewLine +
-                    "Clave: " + row["iIdsemestre"] + Environment.NewLine +
-                    "Nivel: " + row["iNivel"];
-
+                    "Clave: " + row["iIdEstado"] + Environment.NewLine +
+                    "Nombre: " + row["vEstado"];
                 DialogResult resultado = await MessageBox.Show(mensaje, "Confirmar eliminacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-
                 if (resultado == DialogResult.OK)
                 {
-                    c = new Clases.clsConexion(semestre.Eliminar());
-                    c.Ejecutar();
-                    await MessageBox.Show("Registro Eliminado");
+                    try
+                    {
+                        c = new Clases.clsConexion(estado.Eliminar());
+                        c.Ejecutar();
+                        await MessageBox.Show("Registro Eliminado");
+                    }
+                    catch (Exception)
+                    {
+                        // Sin este try/catch, un FK violado cierra el programa completo
+                        await MessageBox.Show("No se pudo eliminar. Revise que no tenga municipios registrados");
+                    }
                 }
             }
             else
             {
-                await MessageBox.Show("No existe ese semestre");
+                await MessageBox.Show("No existe ese estado");
             }
         }
 

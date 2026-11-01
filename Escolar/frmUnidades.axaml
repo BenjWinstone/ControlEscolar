@@ -1,24 +1,26 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="projMenuGeneral.Escolar.frmUnidades"
-        Title="frmUnidades"
+        Title="Unidades Academicas"
         Width="800" Height="450"
         WindowStartupLocation="CenterScreen">
   <Panel>
-    <!-- Las posiciones (Canvas.Left / Canvas.Top) son las mismas X, Y que tenias en el diseñador de WinForms -->
+    <!-- Estandar: primer TextBox/ComboBox en Top=90, primer label en Top=95, 30 de separacion entre filas.
+         Labels en Left=195 (Width 160), controles en Left=365 (Width 241): centrado para ventana de 800 -->
     <Canvas>
-      <TextBlock x:Name="labelClave" Text="Clave de la Unidad" Canvas.Left="235" Canvas.Top="95" />
-      <TextBox x:Name="txtClave" Canvas.Left="371" Canvas.Top="90" Width="241" />
-      <TextBlock x:Name="labelNombre" Text="Nombre de la Unidad" Canvas.Left="235" Canvas.Top="120" />
-      <TextBox x:Name="txtNombre" Canvas.Left="371" Canvas.Top="115" Width="241" />
-      <TextBlock x:Name="labelEstado" Text="Estado" Canvas.Left="235" Canvas.Top="145" />
-      <ComboBox x:Name="comboEstados" Canvas.Left="371" Canvas.Top="140" Width="241" SelectionChanged="comboEstados_SelectionChanged" />
-      <TextBlock x:Name="labelMunicipio" Text="Municipio" Canvas.Left="235" Canvas.Top="170" />
-      <ComboBox x:Name="comboMunicipios" Canvas.Left="371" Canvas.Top="165" Width="241" SelectionChanged="comboMunicipios_SelectionChanged" />
-      <TextBlock x:Name="labelCiudad" Text="Ciudad" Canvas.Left="235" Canvas.Top="195" />
-      <ComboBox x:Name="comboCiudades" Canvas.Left="371" Canvas.Top="190" Width="241" />
+      <TextBlock x:Name="labelClave" Text="Clave de la Unidad" Canvas.Left="195" Canvas.Top="95" Width="160" />
+      <TextBox x:Name="txtClave" Canvas.Left="365" Canvas.Top="90" Width="241" />
+      <TextBlock x:Name="labelNombre" Text="Nombre de la Unidad" Canvas.Left="195" Canvas.Top="125" Width="160" />
+      <TextBox x:Name="txtNombre" Canvas.Left="365" Canvas.Top="120" Width="241" />
+      <TextBlock x:Name="labelEstado" Text="Estado" Canvas.Left="195" Canvas.Top="155" Width="160" />
+      <ComboBox x:Name="comboEstados" Canvas.Left="365" Canvas.Top="150" Width="241" SelectionChanged="comboEstados_SelectionChanged" />
+      <TextBlock x:Name="labelMunicipio" Text="Municipio" Canvas.Left="195" Canvas.Top="185" Width="160" />
+      <ComboBox x:Name="comboMunicipios" Canvas.Left="365" Canvas.Top="180" Width="241" SelectionChanged="comboMunicipios_SelectionChanged" />
+      <TextBlock x:Name="labelCiudad" Text="Ciudad" Canvas.Left="195" Canvas.Top="215" Width="160" />
+      <ComboBox x:Name="comboCiudades" Canvas.Left="365" Canvas.Top="210" Width="241" />
     </Canvas>
 
+    <!-- Menu y barra de iconos (van encima, arriba) -->
     <StackPanel VerticalAlignment="Top">
       <Menu x:Name="msUnidades">
         <MenuItem x:Name="msOpciones" Header="Opciones">
