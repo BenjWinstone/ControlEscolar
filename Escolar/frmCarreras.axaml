@@ -7,10 +7,12 @@
   <Panel>
     <!-- Las posiciones (Canvas.Left / Canvas.Top) son las mismas X, Y que tenias en el diseñador de WinForms -->
     <Canvas>
-      <TextBlock x:Name="labelClave" Text="Clave de la Carrera" Canvas.Left="198" Canvas.Top="98" />
+      <TextBlock x:Name="labelClave" Text="Clave de la Carrera" Canvas.Left="200" Canvas.Top="100" />
       <TextBox x:Name="txtClave" Canvas.Left="330" Canvas.Top="95" Width="241" />
-      <TextBlock x:Name="labelNombre" Text="Nombre de la Carrera" Canvas.Left="198" Canvas.Top="135" />
-      <TextBox x:Name="txtNombre" Canvas.Left="330" Canvas.Top="132" Width="241" />
+      <TextBlock x:Name="labelNombre" Text="Nombre de la Carrera" Canvas.Left="200" Canvas.Top="125" />
+      <TextBox x:Name="txtNombre" Canvas.Left="330" Canvas.Top="120" Width="241" />
+      <TextBlock x:Name="labelDepartamento" Text="Departamento" Canvas.Left="200" Canvas.Top="150" />
+      <ComboBox x:Name="comboDepartamento" Canvas.Left="330" Canvas.Top="145" Width="241" />
     </Canvas>
 
     <!-- Menu y barra de iconos (van encima, arriba) -->

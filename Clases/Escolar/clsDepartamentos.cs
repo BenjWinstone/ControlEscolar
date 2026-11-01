@@ -8,23 +8,27 @@ namespace projMenuGeneral.Clases
 {
     internal class clsDepartamentos
     {
-        private string _nombre;
-        private int _id;
+        private string _departamento;
+        private byte _id;
         public clsDepartamentos()
         {
         }
-        public clsDepartamentos(int id)
+        public clsDepartamentos(byte id)
         {
             _id = id;
         }
-        public clsDepartamentos(int id, string nombre)
+        public clsDepartamentos(byte id, string nombre)
         {
             _id = id;
-            _nombre = nombre;
+            _departamento = nombre;
+        }
+        public string ConsultaGeneral()
+        {
+            return "SELECT * FROM tblDepartamentos";
         }
         public string Guardar()
         {
-            return $"insert into tblDepartamentos(iIdDepartamento, iValorTurnos) values ({_id},'{_nombre}')";
+            return $"insert into tblDepartamentos(iIdDepartamento, iValorTurnos) values ({_id},'{_departamento}')";
         }
         public string Buscar()
         {
@@ -32,7 +36,7 @@ namespace projMenuGeneral.Clases
         }
         public string Modificar()
         {
-            return $"update tblDepartamentos set iValorTurnos = '{_nombre}' where iIdDepartamento = {_id}";
+            return $"update tblDepartamentos set iValorTurnos = '{_departamento}' where iIdDepartamento = {_id}";
         }
         public string Eliminar()
         {

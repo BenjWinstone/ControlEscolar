@@ -15,6 +15,30 @@ namespace projMenuGeneral.Escolar
         {
             InitializeComponent();
         }
+        private void CargarDepartamentos()
+        {
+            DataSet ds = new DataSet();
+            Clases.clsDepartamentos s = new Clases.clsDepartamentos();
+            Clases.clsConexion c = new Clases.clsConexion(s.ConsultaGeneral());
+            ds = c.Consultar();
+            LlenarComboDepartamentos(ds.Tables[0]);   // CAMBIO: antes DataSource / DisplayMember / ValueMember
+        }
+        private List<clsOpcion> _departamento = new List<clsOpcion>();
+        private void LlenarComboDepartamento(DataTable dt)
+        {
+            _carreras.Clear();
+            foreach (DataRow fila in dt.Rows)
+                _carreras.Add(new clsOpcion(Convert.ToInt32(fila["iIdCarrera"]), fila["vCarrera"].ToString()));
+            comboDepartamento.ItemsSource = _carreras;
+        }
+        private int ValorCarrera()
+        {
+            return ((clsOpcion)comboDepartamento.SelectedItem).Valor;
+        }
+        private void SeleccionarCarrera(int idCarrera)
+        {
+            comboDepartamento.SelectedItem = _carreras.FirstOrDefault(o => o.Valor == idCarrera);
+        }
         private async Task<bool> ObtenerEntero(TextBox campo, string descripcion)
         {
             if (!int.TryParse(campo.Text, out int valor) || valor <= 0)
