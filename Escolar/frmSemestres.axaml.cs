@@ -47,7 +47,7 @@ namespace projMenuGeneral.Escolar
             ds = c.Consultar();
             if (ds.Tables["Tabla"].Rows.Count > 0)
             {
-                txtNivel.Text = ds.Tables["Tabla"].Rows[0]["vNivel"].ToString();
+                txtNivel.Text = ds.Tables["Tabla"].Rows[0]["iNivel"].ToString();
             }
             else
             { await MessageBox.Show("No existe ese semestre");
@@ -94,7 +94,7 @@ namespace projMenuGeneral.Escolar
                 DataRow row = ds.Tables["Tabla"].Rows[0];
                 string mensaje = "¿Seguro que quiere eliminar el siguiente registro?" + Environment.NewLine + Environment.NewLine +
                     "Clave: " + row["iIdsemestre"] + Environment.NewLine +
-                    "Nivel: " + row["vNivel"];
+                    "Nivel: " + row["iNivel"];
 
                 DialogResult resultado = await MessageBox.Show(mensaje, "Confirmar eliminacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
 
@@ -140,7 +140,7 @@ namespace projMenuGeneral.Escolar
 
         private void msSalir_Click(object sender, RoutedEventArgs e)
         {
-            Clases.clsGlobal.Salir();
+            Close();
         }
     }
 }

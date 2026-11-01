@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Tmds.DBus.Protocol;
 
 namespace projMenuGeneral.Escolar
 {
@@ -14,6 +15,8 @@ namespace projMenuGeneral.Escolar
         public frmCarreras()
         {
             InitializeComponent();
+            if (!Design.IsDesignMode)   // CAMBIO: la vista previa de Rider no debe conectarse a la base de datos
+                CargarDepartamentos();
         }
         private void CargarDepartamentos()
         {
@@ -23,21 +26,21 @@ namespace projMenuGeneral.Escolar
             ds = c.Consultar();
             LlenarComboDepartamentos(ds.Tables[0]);   // CAMBIO: antes DataSource / DisplayMember / ValueMember
         }
-        private List<clsOpcion> _departamento = new List<clsOpcion>();
-        private void LlenarComboDepartamento(DataTable dt)
+        private List<clsOpcion> _departamentos = new List<clsOpcion>();
+        private void LlenarComboDepartamentos(DataTable dt)
         {
-            _carreras.Clear();
+            _departamentos.Clear();
             foreach (DataRow fila in dt.Rows)
-                _carreras.Add(new clsOpcion(Convert.ToInt32(fila["iIdCarrera"]), fila["vCarrera"].ToString()));
-            comboDepartamento.ItemsSource = _carreras;
+                _departamentos.Add(new clsOpcion(Convert.ToInt32(fila["iIdDepartamento"]), fila["vDepartamento"].ToString()));
+            comboDepartamento.ItemsSource = _departamentos;
         }
-        private int ValorCarrera()
+        private int ValorDepartamento()
         {
             return ((clsOpcion)comboDepartamento.SelectedItem).Valor;
         }
-        private void SeleccionarCarrera(int idCarrera)
+        private void SeleccionarDepartamento(int idDepartamento)
         {
-            comboDepartamento.SelectedItem = _carreras.FirstOrDefault(o => o.Valor == idCarrera);
+            comboDepartamento.SelectedItem = _departamentos.FirstOrDefault(o => o.Valor == idDepartamento);
         }
         private async Task<bool> ObtenerEntero(TextBox campo, string descripcion)
         {
@@ -72,6 +75,7 @@ namespace projMenuGeneral.Escolar
             if (ds.Tables["Tabla"].Rows.Count > 0)
             {
                 txtNombre.Text = ds.Tables["Tabla"].Rows[0]["vCarrera"].ToString();
+                SeleccionarDepartamento(Convert.ToInt32(ds.Tables["Tabla"].Rows[0]["iIdDepartamento"]));
             }
             else
                 await MessageBox.Show("No existe esa Carrera");
@@ -81,21 +85,28 @@ namespace projMenuGeneral.Escolar
         {
             if (!await ObtenerEntero(txtClave, "La clave") || await CampoVacio(txtNombre, "el nombre de la carrera"))
                 return;
-
+            if (comboDepartamento.SelectedItem == null)
+            {
+                await MessageBox.Show("Seleccione un departamento");
+                comboDepartamento.Focus();
+                return;
+            }
+            byte idDepartamento = (byte)ValorDepartamento();
+            
             DataSet ds = new DataSet();
             clsCarreras carrera = new clsCarreras(int.Parse(txtClave.Text));
             c = new Clases.clsConexion(carrera.Buscar());
             ds = c.Consultar();
             if (ds.Tables["Tabla"].Rows.Count > 0)
             {
-                carrera = new clsCarreras(int.Parse(txtClave.Text), txtNombre.Text);
+                carrera = new clsCarreras(int.Parse(txtClave.Text), txtNombre.Text, idDepartamento);
                 c = new Clases.clsConexion(carrera.Modificar());
                 c.Ejecutar();
                 await MessageBox.Show("Registro Existente Modificado");
             }
             else
             {
-                carrera = new clsCarreras(int.Parse(txtClave.Text), txtNombre.Text);
+                carrera = new clsCarreras(int.Parse(txtClave.Text), txtNombre.Text, idDepartamento);
                 c = new Clases.clsConexion(carrera.Guardar());
                 c.Ejecutar();
                 await MessageBox.Show("Registro Realizado con exito");
@@ -163,7 +174,7 @@ namespace projMenuGeneral.Escolar
 
         private void msSalir_Click(object sender, RoutedEventArgs e)
         {
-            Clases.clsGlobal.Salir();
+            Close();
         }
     }
 }

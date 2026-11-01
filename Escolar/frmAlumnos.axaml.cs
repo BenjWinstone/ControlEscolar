@@ -211,7 +211,7 @@ namespace projMenuGeneral.Escolar
 
         private void msSalir_Click(object sender, RoutedEventArgs e)
         {
-            Clases.clsGlobal.Salir();
+            Close();
         }
     }
 }
