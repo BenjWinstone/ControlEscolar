@@ -13,8 +13,8 @@ namespace projMenuGeneral.Clases
         static public string _dbn = "dbEscolar";
         
         //static public string _server = @"void\sqlserver2025";   // original (Windows)
-        static public string _server = "localhost,1433";            // contenedor de SQL Server en Fedora (cambia el puerto si es otro)
-        
+        // En Windows (Podman) y en Linux (Fedora/Debian) el servidor puede ser distinto
+        static public string _server = OperatingSystem.IsWindows() ? "127.0.0.1,1433" : "localhost,1433";
         //static public string _psswd = "1234";                      // original
         static public string _psswd = "Liz.142857";
         
