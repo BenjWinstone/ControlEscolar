@@ -5,13 +5,12 @@
         Width="800" Height="450"
         WindowStartupLocation="CenterScreen">
   <Panel>
-    <!-- Las posiciones (Canvas.Left / Canvas.Top) son las mismas X, Y que tenias en el diseñador de WinForms -->
     <Canvas>
-      <TextBlock x:Name="labelValor1" Text="Valor 1" Canvas.Left="304" Canvas.Top="74" />
-      <TextBox x:Name="txtValor1" Canvas.Left="350" Canvas.Top="71" Width="100" />
-      <TextBlock x:Name="labelValor2" Text="Valor 2" Canvas.Left="304" Canvas.Top="114" />
-      <TextBox x:Name="txtValor2" Canvas.Left="350" Canvas.Top="111" Width="100" />
-      <Button x:Name="button1" Content="Sumar" Canvas.Left="337" Canvas.Top="162" Width="75" Height="23" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+      <TextBlock x:Name="labelValor1" Text="Valor 1" Canvas.Left="195" Canvas.Top="95" Width="160" />
+      <TextBox x:Name="txtValor1" Canvas.Left="365" Canvas.Top="90" Width="241" />
+      <TextBlock x:Name="labelValor2" Text="Valor 2" Canvas.Left="195" Canvas.Top="125" Width="160" />
+      <TextBox x:Name="txtValor2" Canvas.Left="365" Canvas.Top="120" Width="241" />
+      <Button x:Name="button1" Content="Sumar" Canvas.Left="363" Canvas.Top="171" Width="75" Height="23" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
     </Canvas>
   </Panel>
 </Window>

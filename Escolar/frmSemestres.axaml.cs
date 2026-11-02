@@ -47,7 +47,7 @@ namespace projMenuGeneral.Escolar
             ds = c.Consultar();
             if (ds.Tables["Tabla"].Rows.Count > 0)
             {
-                txtNivel.Text = ds.Tables["Tabla"].Rows[0]["vNivel"].ToString();
+                txtNivel.Text = ds.Tables["Tabla"].Rows[0]["iNivel"].ToString();
             }
             else
             { await MessageBox.Show("No existe ese semestre");
@@ -57,7 +57,7 @@ namespace projMenuGeneral.Escolar
 
         private async Task Guardar()
         {
-            if (!await ObtenerEntero(txtClave, "La clave") || await CampoVacio(txtNivel, "el nivel del semestre"))
+            if (!await ObtenerEntero(txtClave, "La clave") || !await ObtenerEntero(txtNivel, "el nivel del semestre"))
                 return;
 
             DataSet ds = new DataSet();
@@ -66,10 +66,18 @@ namespace projMenuGeneral.Escolar
             ds = c.Consultar();
             if (ds.Tables["Tabla"].Rows.Count > 0)
             {
-                semestre = new clsSemestre(int.Parse(txtClave.Text), int.Parse(txtNivel.Text));
-                c = new Clases.clsConexion(semestre.Modificar());
-                c.Ejecutar();
-                await MessageBox.Show("Registro Existente Modificado");
+                DataRow row = ds.Tables["Tabla"].Rows[0];
+                string mensaje = "¿Seguro que quiere actualizar el siguiente registro?" + Environment.NewLine + Environment.NewLine +
+                                 "Clave: " + row["iIdSemestre"] + Environment.NewLine +
+                                 "Nivel: " + row["iNivel"] + "  ->  " + txtNivel.Text;
+                DialogResult resultado = await MessageBox.Show(mensaje, "Confirmar modificacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                if (resultado == DialogResult.OK)
+                {
+                    semestre = new clsSemestre(int.Parse(txtClave.Text), int.Parse(txtNivel.Text));
+                    c = new Clases.clsConexion(semestre.Modificar());
+                    c.Ejecutar();
+                    await MessageBox.Show("Registro Existente Modificado");
+                }
             }
             else
             {
@@ -94,7 +102,7 @@ namespace projMenuGeneral.Escolar
                 DataRow row = ds.Tables["Tabla"].Rows[0];
                 string mensaje = "¿Seguro que quiere eliminar el siguiente registro?" + Environment.NewLine + Environment.NewLine +
                     "Clave: " + row["iIdsemestre"] + Environment.NewLine +
-                    "Nivel: " + row["vNivel"];
+                    "Nivel: " + row["iNivel"];
 
                 DialogResult resultado = await MessageBox.Show(mensaje, "Confirmar eliminacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
 
@@ -140,7 +148,7 @@ namespace projMenuGeneral.Escolar
 
         private void msSalir_Click(object sender, RoutedEventArgs e)
         {
-            Clases.clsGlobal.Salir();
+            Close();
         }
     }
 }

@@ -39,11 +39,11 @@ namespace projMenuGeneral.Clases
         }
         public string Guardar()
         {
-            return $"INSERT INTO tblCarreras (iIdCarrera, vCarrera) VALUES ({_idCarrera}, '{_nombreCarrera}')";
+            return $"INSERT INTO tblCarreras (iIdCarrera, vCarrera, iIdDepartamento) VALUES ({_idCarrera}, '{_nombreCarrera}', {_idDepartamento})";
         }
         public string Modificar()
         {
-            return $"UPDATE tblCarreras set vCarrera= '{_nombreCarrera}' where iIdCarrera = {_idCarrera}";
+            return $"UPDATE tblCarreras set vCarrera= '{_nombreCarrera}', iIdDepartamento = {_idDepartamento} where iIdCarrera = {_idCarrera}";
         }
         public string Eliminar()
         {

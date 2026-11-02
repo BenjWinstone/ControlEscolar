@@ -28,7 +28,7 @@ namespace projMenuGeneral.Clases
         }
         public string Guardar()
         {
-            return $"insert into tblDepartamentos(iIdDepartamento, iValorTurnos) values ({_id},'{_departamento}')";
+            return $"insert into tblDepartamentos(iIdDepartamento, vDepartamento) values ({_id},'{_departamento}')";
         }
         public string Buscar()
         {
@@ -36,7 +36,7 @@ namespace projMenuGeneral.Clases
         }
         public string Modificar()
         {
-            return $"update tblDepartamentos set iValorTurnos = '{_departamento}' where iIdDepartamento = {_id}";
+            return $"update tblDepartamentos set vDepartamento = '{_departamento}' where iIdDepartamento = {_id}";
         }
         public string Eliminar()
         {

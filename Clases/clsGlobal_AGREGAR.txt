@@ -1,0 +1,11 @@
+// En Clases/clsGlobal.cs, dentro de la clase (por ejemplo antes de Salir()), AGREGA estas lineas.
+// NO reemplaces el archivo: ahi esta tu cadena de conexion.
+
+        // Sesion actual (se llena en frmLogin)
+        static public int _idUsuario;
+        static public string _usuario;
+        static public byte _rol;          // 1 = usuario, 2 = admin
+        static public bool EsAdmin
+        {
+            get { return _rol == 2; }
+        }

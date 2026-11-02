@@ -23,4 +23,10 @@
     <AvaloniaResource Include="Iconos\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Escolar\frmTurnos.axaml.cs">
+      <DependentUpon>frmTurnos.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>

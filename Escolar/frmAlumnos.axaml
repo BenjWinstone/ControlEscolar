@@ -5,24 +5,25 @@
         Width="800" Height="450"
         WindowStartupLocation="CenterScreen">
   <Panel>
-    <!-- Las posiciones (Canvas.Left / Canvas.Top) son las mismas X, Y que tenias en el diseñador de WinForms -->
+    <!-- Estandar: primer TextBox/ComboBox en Top=90, primer label en Top=95, 30 de separacion entre filas.
+         Labels en Left=195 (Width 160), controles en Left=365 (Width 241): centrado para ventana de 800 -->
     <Canvas>
-      <TextBlock x:Name="labelMatricula" Text="Matricula" Canvas.Left="231" Canvas.Top="95" />
-      <TextBox x:Name="txtMatricula" Canvas.Left="300" Canvas.Top="90" Width="241" />
-      <TextBlock x:Name="labelNombre" Text="Nombre" Canvas.Left="230" Canvas.Top="120" />
-      <TextBox x:Name="txtNombre" Canvas.Left="300" Canvas.Top="115" Width="241" />
-      <TextBlock x:Name="labelTelefono" Text="Telefono" Canvas.Left="230" Canvas.Top="145" />
-      <TextBox x:Name="txtTelefono" Canvas.Left="300" Canvas.Top="140" Width="241" />
-      <TextBlock x:Name="labelCorreo" Text="Correo" Canvas.Left="230" Canvas.Top="170" />
-      <TextBox x:Name="txtCorreo" Canvas.Left="300" Canvas.Top="165" Width="241" />
-      <TextBlock x:Name="labelCarrera" Text="Carrera" Canvas.Left="230" Canvas.Top="195" />
-      <ComboBox x:Name="comboCarreras" Canvas.Left="300" Canvas.Top="190" Width="241" />
+      <TextBlock x:Name="labelMatricula" Text="Matricula" Canvas.Left="195" Canvas.Top="95" Width="160" />
+      <TextBox x:Name="txtMatricula" Canvas.Left="365" Canvas.Top="90" Width="241" />
+      <TextBlock x:Name="labelNombre" Text="Nombre" Canvas.Left="195" Canvas.Top="125" Width="160" />
+      <TextBox x:Name="txtNombre" Canvas.Left="365" Canvas.Top="120" Width="241" />
+      <TextBlock x:Name="labelTelefono" Text="Telefono" Canvas.Left="195" Canvas.Top="155" Width="160" />
+      <TextBox x:Name="txtTelefono" Canvas.Left="365" Canvas.Top="150" Width="241" />
+      <TextBlock x:Name="labelCorreo" Text="Correo" Canvas.Left="195" Canvas.Top="185" Width="160" />
+      <TextBox x:Name="txtCorreo" Canvas.Left="365" Canvas.Top="180" Width="241" />
+      <TextBlock x:Name="labelCarrera" Text="Carrera" Canvas.Left="195" Canvas.Top="215" Width="160" />
+      <ComboBox x:Name="comboCarreras" Canvas.Left="365" Canvas.Top="210" Width="241" />
     </Canvas>
 
     <!-- Menu y barra de iconos (van encima, arriba) -->
     <StackPanel VerticalAlignment="Top">
       <Menu x:Name="msAlumnos">
-        <MenuItem x:Name="msOpcionesAlumnos" Header="Opciones">
+        <MenuItem x:Name="msOpciones" Header="Opciones">
           <MenuItem x:Name="msRegistrar" Header="Registrar" Click="msRegistrar_Click" />
           <MenuItem x:Name="msBuscar" Header="Buscar" Click="msBuscar_Click" />
           <MenuItem x:Name="msEliminar" Header="Eliminar" Click="msEliminar_Click" />

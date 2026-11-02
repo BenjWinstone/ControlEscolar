@@ -66,10 +66,18 @@ namespace projMenuGeneral.Escolar
             ds = c.Consultar();
             if (ds.Tables["Tabla"].Rows.Count > 0)
             {
-                materia = new clsMaterias(int.Parse(txtClave.Text), txtNombre.Text);
-                c = new Clases.clsConexion(materia.Modificar());
-                c.Ejecutar();
-                await MessageBox.Show("Registro Existente Modificado");
+                DataRow row = ds.Tables["Tabla"].Rows[0];
+                string mensaje = "¿Seguro que quiere actualizar el siguiente registro?" + Environment.NewLine + Environment.NewLine +
+                                 "Clave: " + row["iIdMateria"] + Environment.NewLine +
+                                 "Nombre: " + row["vNombre"] + "  ->  " + txtNombre.Text;
+                DialogResult resultado = await MessageBox.Show(mensaje, "Confirmar modificacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                if (resultado == DialogResult.OK)
+                {
+                    materia = new clsMaterias(int.Parse(txtClave.Text), txtNombre.Text);
+                    c = new Clases.clsConexion(materia.Modificar());
+                    c.Ejecutar();
+                    await MessageBox.Show("Registro Existente Modificado");
+                }
             }
             else
             {
@@ -140,7 +148,7 @@ namespace projMenuGeneral.Escolar
 
         private void msSalir_Click(object sender, RoutedEventArgs e)
         {
-            Clases.clsGlobal.Salir();
+            Close();
         }
     }
 }

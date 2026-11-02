@@ -5,12 +5,13 @@
         Width="800" Height="450"
         WindowStartupLocation="CenterScreen">
   <Panel>
-    <!-- Las posiciones (Canvas.Left / Canvas.Top) son las mismas X, Y que tenias en el diseñador de WinForms -->
+    <!-- Estandar: primer TextBox/ComboBox en Top=90, primer label en Top=95, 30 de separacion entre filas.
+         Labels en Left=195 (Width 160), controles en Left=365 (Width 241): centrado para ventana de 800 -->
     <Canvas>
-      <TextBlock x:Name="labelClave" Text="Clave de la Materia" Canvas.Left="202" Canvas.Top="92" />
-      <TextBox x:Name="txtClave" Canvas.Left="330" Canvas.Top="89" Width="241" />
-      <TextBlock x:Name="labelNombre" Text="Nombre de la Materia" Canvas.Left="203" Canvas.Top="130" />
-      <TextBox x:Name="txtNombre" Canvas.Left="330" Canvas.Top="127" Width="241" />
+      <TextBlock x:Name="labelClave" Text="Clave de la Materia" Canvas.Left="195" Canvas.Top="95" Width="160" />
+      <TextBox x:Name="txtClave" Canvas.Left="365" Canvas.Top="90" Width="241" />
+      <TextBlock x:Name="labelNombre" Text="Nombre de la Materia" Canvas.Left="195" Canvas.Top="125" Width="160" />
+      <TextBox x:Name="txtNombre" Canvas.Left="365" Canvas.Top="120" Width="241" />
     </Canvas>
 
     <!-- Menu y barra de iconos (van encima, arriba) -->

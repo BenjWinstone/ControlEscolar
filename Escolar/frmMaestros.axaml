@@ -5,24 +5,25 @@
         Width="800" Height="450"
         WindowStartupLocation="CenterScreen">
   <Panel>
-    <!-- Las posiciones (Canvas.Left / Canvas.Top) son las mismas X, Y que tenias en el diseñador de WinForms -->
+    <!-- Estandar: primer TextBox/ComboBox en Top=90, primer label en Top=95, 30 de separacion entre filas.
+         Labels en Left=195 (Width 160), controles en Left=365 (Width 241): centrado para ventana de 800 -->
     <Canvas>
-      <TextBlock x:Name="labelNumero" Text="Numero de Empleado" Canvas.Left="215" Canvas.Top="103" />
-      <TextBox x:Name="txtNumero" Canvas.Left="340" Canvas.Top="100" Width="241" />
-      <TextBlock x:Name="labelNombre" Text="Nombre" Canvas.Left="215" Canvas.Top="129" />
-      <TextBox x:Name="txtNombre" Canvas.Left="340" Canvas.Top="126" Width="241" />
-      <TextBlock x:Name="labelTelefono" Text="Telefono" Canvas.Left="215" Canvas.Top="155" />
-      <TextBox x:Name="txtTelefono" Canvas.Left="340" Canvas.Top="152" Width="241" />
-      <TextBlock x:Name="labelCorreo" Text="Correo" Canvas.Left="215" Canvas.Top="181" />
-      <TextBox x:Name="txtCorreo" Canvas.Left="340" Canvas.Top="178" Width="241" />
-      <TextBlock x:Name="labelCarrera" Text="Carrera" Canvas.Left="215" Canvas.Top="212" />
-      <ComboBox x:Name="comboCarreras" Canvas.Left="340" Canvas.Top="209" Width="241" />
+      <TextBlock x:Name="labelNumero" Text="Numero de Empleado" Canvas.Left="195" Canvas.Top="95" Width="160" />
+      <TextBox x:Name="txtNumero" Canvas.Left="365" Canvas.Top="90" Width="241" />
+      <TextBlock x:Name="labelNombre" Text="Nombre" Canvas.Left="195" Canvas.Top="125" Width="160" />
+      <TextBox x:Name="txtNombre" Canvas.Left="365" Canvas.Top="120" Width="241" />
+      <TextBlock x:Name="labelTelefono" Text="Telefono" Canvas.Left="195" Canvas.Top="155" Width="160" />
+      <TextBox x:Name="txtTelefono" Canvas.Left="365" Canvas.Top="150" Width="241" />
+      <TextBlock x:Name="labelCorreo" Text="Correo" Canvas.Left="195" Canvas.Top="185" Width="160" />
+      <TextBox x:Name="txtCorreo" Canvas.Left="365" Canvas.Top="180" Width="241" />
+      <TextBlock x:Name="labelCarrera" Text="Carrera" Canvas.Left="195" Canvas.Top="215" Width="160" />
+      <ComboBox x:Name="comboCarreras" Canvas.Left="365" Canvas.Top="210" Width="241" />
     </Canvas>
 
     <!-- Menu y barra de iconos (van encima, arriba) -->
     <StackPanel VerticalAlignment="Top">
       <Menu x:Name="msMaestros">
-        <MenuItem x:Name="msOpcionesAlumnos" Header="Opciones">
+        <MenuItem x:Name="msOpciones" Header="Opciones">
           <MenuItem x:Name="msRegistrar" Header="Registrar" Click="msRegistrar_Click" />
           <MenuItem x:Name="msBuscar" Header="Buscar" Click="msBuscar_Click" />
           <MenuItem x:Name="msEliminar" Header="Eliminar" Click="msEliminar_Click" />
@@ -33,7 +34,7 @@
         <Button x:Name="tsRegistrar" Click="tsRegistrar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Registrar">
           <Image Source="avares://projMenuGeneral/Iconos/save.png" Width="32" Height="32" />
         </Button>
-        <Button x:Name="tsBuscar"  Click="tsBuscar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Buscar">
+        <Button x:Name="tsBuscar" Click="tsBuscar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Buscar">
           <Image Source="avares://projMenuGeneral/Iconos/search.png" Width="32" Height="32" />
         </Button>
         <Button x:Name="tsEliminar" Click="tsEliminar_Click" Background="Transparent" Padding="8,7" ToolTip.Tip="Eliminar">

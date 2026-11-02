@@ -24,7 +24,7 @@ namespace projMenuGeneral.Clases
         }
         public string Guardar()
         {
-            return $"insert into tblMaterias(iIdMateria, vNombre) values ({_clave},'{_nombre}')";
+            return $"insert into tblMaterias(iIdMateria, vMateria) values ({_clave},'{_nombre}')";
         }
         public string Buscar()
         {
@@ -32,7 +32,7 @@ namespace projMenuGeneral.Clases
         }
         public string Modificar()
         {
-            return $"update tblMaterias set vNombre = '{_nombre}' where iIdMateria = {_clave}";
+            return $"update tblMaterias set vMateria = '{_nombre}' where iIdMateria = {_clave}";
         }
         public string Eliminar()
         {

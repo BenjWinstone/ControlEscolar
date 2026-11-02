@@ -9,9 +9,7 @@ namespace projMenuGeneral.Clases
     internal class clsUnidades
     {
         private string _nombre;
-        private string _ciudad;
-        private string _municipio;
-        private string _estado;
+        private int _idCiudad;
         private int _id;
         public clsUnidades()
         {
@@ -20,25 +18,28 @@ namespace projMenuGeneral.Clases
         {
             _id = clave;
         }
-        public clsUnidades(int clave, string nombre, string ciudad,string municipio, string estado)
+        public clsUnidades(int clave, string nombre, int idCiudad)
         {
             _id = clave;
             _nombre = nombre;
-            _ciudad = ciudad;
-            _municipio = municipio;
-            _estado = estado;
+            _idCiudad = idCiudad;
         }
         public string Guardar()
         {
-            return $"insert into tblUnidades(iIdUnidades, iValorUnidades) values ({_id},'{_nombre}')";
+            return $"insert into tblUnidades(iIdUnidades, vNombre, iIdCiudad) values ({_id},'{_nombre}',{_idCiudad})";
         }
         public string Buscar()
         {
-            return "SELECT * FROM tblUnidades where iIdUnidades = " + _id;
+            // Sube de la ciudad al municipio y al estado, para poder seleccionar los 3 combos
+            return "SELECT u.iIdUnidades, u.vNombre, u.iIdCiudad, c.vCiudad, c.iIdMunicipio, m.iIdEstado " +
+                   "FROM tblUnidades u " +
+                   "INNER JOIN tblCiudades c ON u.iIdCiudad = c.iIdCiudad " +
+                   "INNER JOIN tblMunicipios m ON c.iIdMunicipio = m.iIdMunicipio " +
+                   "WHERE u.iIdUnidades = " + _id;
         }
         public string Modificar()
         {
-            return $"update tblUnidades set iValorUnidades = '{_nombre}' where iIdUnidades = {_id}";
+            return $"update tblUnidades set vNombre = '{_nombre}', iIdCiudad = {_idCiudad} where iIdUnidades = {_id}";
         }
         public string Eliminar()
         {

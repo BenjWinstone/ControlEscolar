@@ -1,0 +1,17 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="projMenuGeneral.frmLogin"
+        Title="Inicio de sesion"
+        Width="500" Height="300"
+        CanResize="False"
+        WindowStartupLocation="CenterScreen">
+  <Panel>
+    <Canvas>
+      <TextBlock x:Name="labelUsuario" Text="Usuario" Canvas.Left="95" Canvas.Top="95" Width="100" />
+      <TextBox x:Name="txtUsuario" Canvas.Left="205" Canvas.Top="90" Width="200" MaxLength="50" />
+      <TextBlock x:Name="labelContrasena" Text="Contrasena" Canvas.Left="95" Canvas.Top="125" Width="100" />
+      <TextBox x:Name="txtContrasena" Canvas.Left="205" Canvas.Top="120" Width="200" MaxLength="50" PasswordChar="*" />
+      <Button x:Name="btnEntrar" Content="Entrar" Canvas.Left="210" Canvas.Top="175" Width="80" Height="23" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsDefault="True" Click="btnEntrar_Click" />
+    </Canvas>
+  </Panel>
+</Window>
