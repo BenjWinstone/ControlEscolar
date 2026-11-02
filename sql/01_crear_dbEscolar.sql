@@ -108,7 +108,7 @@ BEGIN
     CREATE TABLE dbo.tblMaterias
     (
         iIdMateria INT          NOT NULL,
-        vNombre    VARCHAR(100) NOT NULL,
+        vMateria    VARCHAR(100) NOT NULL,
         CONSTRAINT PK_tblMaterias PRIMARY KEY (iIdMateria),
         CONSTRAINT CK_tblMaterias_iIdMateria CHECK (iIdMateria > 0)
     );
@@ -135,7 +135,7 @@ BEGIN
     CREATE TABLE dbo.tblTurnos
     (
         iIdTurnos    INT         NOT NULL,
-        iValorTurnos VARCHAR(50) NOT NULL,
+        vTurno VARCHAR(50) NOT NULL,
         CONSTRAINT PK_tblTurnos PRIMARY KEY (iIdTurnos),
         CONSTRAINT CK_tblTurnos_iIdTurnos CHECK (iIdTurnos > 0)
     );
@@ -243,7 +243,7 @@ GO
 IF NOT EXISTS (SELECT 1 FROM dbo.tblUsuarios WHERE vUsuario = 'admin')
     INSERT INTO dbo.tblUsuarios (iIdUsuario, vUsuario, vContrasena, iRol) VALUES (1, 'admin', 'admin', 2);
 IF NOT EXISTS (SELECT 1 FROM dbo.tblUsuarios WHERE vUsuario = 'usuario')
-    INSERT INTO dbo.tblUsuarios (iIdUsuario, vUsuario, vContrasena, iRol) VALUES (2, 'usuario', 'usuario', 1);
+    INSERT INTO dbo.tblUsuarios (iIdUsuario, vUsuario, vContrasena, iRol) VALUES (2, 'user', 'user', 1);
 GO
 
 /* =============== 3. CAMBIOS A TABLAS EXISTENTES (ALTER) ===============
