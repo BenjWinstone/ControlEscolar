@@ -24,7 +24,7 @@ namespace projMenuGeneral.Clases
         }
         public string Guardar()
         {
-            return $"insert into tblTurnos(iIdTurnos, iValorTurnos) values ({_id},'{_nombre}')";
+            return $"insert into tblTurnos(iIdTurnos, vTurnos) values ({_id},'{_nombre}')";
         }
         public string Buscar()
         {
@@ -32,7 +32,7 @@ namespace projMenuGeneral.Clases
         }
         public string Modificar()
         {
-            return $"update tblTurnos set iValorTurnos = '{_nombre}' where iIdTurnos = {_id}";
+            return $"update tblTurnos set vTurnos = '{_nombre}' where iIdTurnos = {_id}";
         }
         public string Eliminar()
         {
