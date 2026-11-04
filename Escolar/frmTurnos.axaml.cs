@@ -47,7 +47,7 @@ namespace projMenuGeneral.Escolar
             ds = c.Consultar();
             if (ds.Tables["Tabla"].Rows.Count > 0)
             {
-                txtNombre.Text = ds.Tables["Tabla"].Rows[0]["iValorTurnos"].ToString();
+                txtNombre.Text = ds.Tables["Tabla"].Rows[0]["vTurno"].ToString();
             }
             else
             {
@@ -70,7 +70,7 @@ namespace projMenuGeneral.Escolar
                 DataRow row = ds.Tables["Tabla"].Rows[0];
                 string mensaje = "¿Seguro que quiere actualizar el siguiente registro?" + Environment.NewLine + Environment.NewLine +
                     "Clave: " + row["iIdTurnos"] + Environment.NewLine +
-                    "Nombre: " + row["iValorTurnos"] + "  ->  " + txtNombre.Text;
+                    "Nombre: " + row["vTurno"] + "  ->  " + txtNombre.Text;
                 DialogResult resultado = await MessageBox.Show(mensaje, "Confirmar modificacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (resultado == DialogResult.OK)
                 {
@@ -102,7 +102,7 @@ namespace projMenuGeneral.Escolar
                 DataRow row = ds.Tables["Tabla"].Rows[0];
                 string mensaje = "¿Seguro que quiere eliminar el siguiente registro?" + Environment.NewLine + Environment.NewLine +
                     "Clave: " + row["iIdTurnos"] + Environment.NewLine +
-                    "Nombre: " + row["iValorTurnos"];
+                    "Nombre: " + row["vTurno"];
                 DialogResult resultado = await MessageBox.Show(mensaje, "Confirmar eliminacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (resultado == DialogResult.OK)
                 {

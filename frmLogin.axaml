@@ -13,5 +13,11 @@
       <TextBox x:Name="txtContrasena" Canvas.Left="205" Canvas.Top="120" Width="200" MaxLength="50" PasswordChar="*" />
       <Button x:Name="btnEntrar" Content="Entrar" Canvas.Left="210" Canvas.Top="175" Width="80" Height="23" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsDefault="True" Click="btnEntrar_Click" />
     </Canvas>
+    <Canvas>
+      <TextBlock x:Name="labelUsrName" Text="Usuario: user" Canvas.Left="25" Canvas.Top="200" Width="100" />
+      <TextBlock x:Name="labelUsrPsswd" Text="Contraseña: user" Canvas.Left="25" Canvas.Top="220" Width="100" />
+      <TextBlock x:Name="labelAdm" Text="Administrador: admin" Canvas.Left="25" Canvas.Top="240" Width="125" />
+      <TextBlock x:Name="labelAdmPsswd" Text="Contraseña: admin" Canvas.Left="25" Canvas.Top="260" Width="110" />
+    </Canvas>
   </Panel>
 </Window>
