@@ -22,6 +22,11 @@ namespace projMenuGeneral.Clases
             _clave = clave;
             _nombre = nombre;
         }
+
+        public string ConsultaGeneral()
+        {
+            return "SELECT * FROM tblMaterias";
+        }
         public string Guardar()
         {
             return $"insert into tblMaterias(iIdMateria, vMateria) values ({_clave},'{_nombre}')";

@@ -29,6 +29,11 @@ namespace projMenuGeneral.Clases
         {
             this._numeroEmpleado= numeroEmpleado;
         }
+
+        public string ConsultaGeneral()
+        {
+            return "SELECT * FROM tblMaestros";
+        }
         public string Buscar()
         {
             return "SELECT * FROM tblMaestros WHERE iNumeroEmpleado = " + _numeroEmpleado;

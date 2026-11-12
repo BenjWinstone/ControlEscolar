@@ -1,6 +1,7 @@
 /* =====================================================================
    dbEscolar - Script de creacion COMPLETO (proyecto projMenuGeneral)
-   Reconstruido a partir del diagrama actual de la base de datos.
+   Actualizado a partir de los scripts exportados de la base de datos real
+   (12/11/2026).
 
    COMO USAR ESTE ARCHIVO
    - Se puede ejecutar completo las veces que quieras: cada bloque pregunta
@@ -9,7 +10,7 @@
      al final de la seccion 1. Si la tabla tiene llave foranea, va DESPUES de la
      tabla que referencia.
    - Para CAMBIAR UNA TABLA QUE YA EXISTE: no edites su CREATE TABLE (no se
-     ejecutaria en una base que ya la tiene). Agrega un bloque en la seccion 2:
+     ejecutaria en una base que ya la tiene). Agrega un bloque en la seccion 3:
          IF COL_LENGTH(N'dbo.tblX', N'columna') IS NULL
              ALTER TABLE dbo.tblX ADD columna TIPO NULL;
          GO   <-- solo en su propia linea
@@ -21,11 +22,14 @@
        tblEstados -> tblMunicipios -> tblCiudades -> tblUnidades
        tblMaterias, tblSemestres, tblTurnos   (sin dependencias)
        tblUsuarios -> tblSolicitudes          (login y solicitudes)
+       tblMaestros + tblMaterias -> tblAsignaciones
+       tblUnidades + tblDepartamentos -> tblUnidadDepartamento
 
-   SUPUESTOS (el diagrama no muestra estas cosas, revisalas contra tu base real):
-   - Todas las columnas son NOT NULL.
-   - Los CHECK (clave > 0, telefono de 10 digitos) vienen de tu script anterior.
-   - tblTurnos.iValorTurnos es VARCHAR porque clsTurnos guarda un texto.
+   NOTAS
+   - Las tablas de la seccion 1 coinciden con los scripts exportados de la base
+     (columnas, tipos, NOT NULL, PK, CHECK, UNIQUE, FK y DEFAULT).
+   - tblAsignaciones no venia entre los scripts exportados: revisa si ya existe
+     en tu base real.
    ===================================================================== */
 
 IF DB_ID(N'dbEscolar') IS NULL
@@ -108,7 +112,7 @@ BEGIN
     CREATE TABLE dbo.tblMaterias
     (
         iIdMateria INT          NOT NULL,
-        vMateria    VARCHAR(100) NOT NULL,
+        vMateria   VARCHAR(100) NOT NULL,
         CONSTRAINT PK_tblMaterias PRIMARY KEY (iIdMateria),
         CONSTRAINT CK_tblMaterias_iIdMateria CHECK (iIdMateria > 0)
     );
@@ -128,14 +132,13 @@ BEGIN
 END
 GO
 
-/* ---------- tblTurnos ----------
-   clsTurnos guarda un TEXTO en iValorTurnos, por eso es VARCHAR aunque el nombre lleve prefijo "i". */
+/* ---------- tblTurnos ---------- */
 IF OBJECT_ID(N'dbo.tblTurnos', N'U') IS NULL
 BEGIN
     CREATE TABLE dbo.tblTurnos
     (
-        iIdTurnos    INT         NOT NULL,
-        vTurno VARCHAR(50) NOT NULL,
+        iIdTurnos INT         NOT NULL,
+        vTurno    VARCHAR(50) NOT NULL,
         CONSTRAINT PK_tblTurnos PRIMARY KEY (iIdTurnos),
         CONSTRAINT CK_tblTurnos_iIdTurnos CHECK (iIdTurnos > 0)
     );
@@ -237,12 +240,54 @@ BEGIN
 END
 GO
 
+/* ---------- tblAsignaciones (maestros <-> materias, muchos a muchos) ----------
+   Va DESPUES de tblMaestros y tblMaterias.
+   bVigente: 1 = vigente, 0 = terminada */
+IF OBJECT_ID(N'dbo.tblAsignaciones', N'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.tblAsignaciones
+    (
+        iIdAsignacion   INT         NOT NULL,
+        iNumeroEmpleado INT         NOT NULL,
+        iIdMateria      INT         NOT NULL,
+        vGrupo          VARCHAR(10) NOT NULL,
+        vSalon          VARCHAR(10) NOT NULL,
+        dFechaInicio    DATE        NOT NULL,
+        dFechaFin       DATE        NOT NULL,
+        bVigente        BIT         NOT NULL,
+        CONSTRAINT PK_tblAsignaciones PRIMARY KEY (iIdAsignacion),
+        CONSTRAINT CK_tblAsignaciones_iIdAsignacion CHECK (iIdAsignacion > 0),
+        CONSTRAINT CK_tblAsignaciones_Fechas CHECK (dFechaFin >= dFechaInicio),
+        CONSTRAINT FK_tblAsignaciones_tblMaestros FOREIGN KEY (iNumeroEmpleado) REFERENCES dbo.tblMaestros (iNumeroEmpleado),
+        CONSTRAINT FK_tblAsignaciones_tblMaterias FOREIGN KEY (iIdMateria) REFERENCES dbo.tblMaterias (iIdMateria)
+    );
+END
+GO
+
+/* ---------- tblUnidadDepartamento (unidades <-> departamentos, muchos a muchos) ----------
+   Va DESPUES de tblUnidades y tblDepartamentos.
+   Los nombres de las restricciones son los que tiene la base real. */
+IF OBJECT_ID(N'dbo.tblUnidadDepartamento', N'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.tblUnidadDepartamento
+    (
+        iIdUnidad       INT     NOT NULL,
+        iIdDepartamento TINYINT NOT NULL,
+        iIdUnidadDepa   INT     NOT NULL,
+        CONSTRAINT PK_UnidadDepa PRIMARY KEY (iIdUnidadDepa),
+        CONSTRAINT UQ_UnidadDepa UNIQUE (iIdUnidad, iIdDepartamento),
+        CONSTRAINT FK_RelacionUnidades FOREIGN KEY (iIdUnidad) REFERENCES dbo.tblUnidades (iIdUnidades),
+        CONSTRAINT FK_RelacionDepartamento FOREIGN KEY (iIdDepartamento) REFERENCES dbo.tblDepartamentos (iIdDepartamento)
+    );
+END
+GO
+
 /* =============== 2. DATOS INICIALES =============== */
 
 /* Usuarios para entrar al programa (cambia las contrasenas cuando quieras) */
 IF NOT EXISTS (SELECT 1 FROM dbo.tblUsuarios WHERE vUsuario = 'admin')
     INSERT INTO dbo.tblUsuarios (iIdUsuario, vUsuario, vContrasena, iRol) VALUES (1, 'admin', 'admin', 2);
-IF NOT EXISTS (SELECT 1 FROM dbo.tblUsuarios WHERE vUsuario = 'usuario')
+IF NOT EXISTS (SELECT 1 FROM dbo.tblUsuarios WHERE vUsuario = 'user')
     INSERT INTO dbo.tblUsuarios (iIdUsuario, vUsuario, vContrasena, iRol) VALUES (2, 'user', 'user', 1);
 GO
 
