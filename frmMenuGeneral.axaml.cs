@@ -66,6 +66,12 @@ namespace projMenuGeneral
             unidades.Show();
         }
 
+        private void msAsignaciones_Click(object sender, RoutedEventArgs e)
+        {
+            frmAsignaciones asignaciones = new frmAsignaciones();
+            asignaciones.Show();
+        }
+
         // ---------- Solo admin ----------
         private void msEstados_Click(object sender, RoutedEventArgs e)
         {

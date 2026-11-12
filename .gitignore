@@ -5,3 +5,17 @@ obj/
 *.user
 # Contiene la contrasena de la base de datos: nunca subirlo
 appsettings.json
+sql/Alumnos.sql
+sql/Carreras.sql
+sql/Ciudades.sql
+sql/Depas.sql
+sql/Estados.sql
+sql/Maestros.sql
+sql/Materias.sql
+sql/Municipios.sql
+sql/Semestre.sql
+sql/Solicitud.sql
+sql/Turno.sql
+sql/Unidad.sql
+sql/UnidadDepa.sql
+sql/Usuarios.sql

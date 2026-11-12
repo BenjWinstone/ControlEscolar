@@ -22,6 +22,7 @@
           <MenuItem x:Name="msSemestres" Header="Semestres" Click="msSemestres_Click" />
           <MenuItem x:Name="msUnidades" Header="Unidades Academicas" Click="msUnidades_Click" />
           <MenuItem x:Name="msTurnos" Header="Turnos" Click="msTurnos_Click" />
+          <MenuItem x:Name="msAsignaciones" Header="Asignaciones" Click="msAsignaciones_Click" />
       </MenuItem>
       <!-- Solo admin -->
       <MenuItem x:Name="msUbicaciones" Header="Ubicaciones">
